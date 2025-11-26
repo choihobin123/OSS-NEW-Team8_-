@@ -3,10 +3,10 @@
 #include <stdio.h>
 
 void printStatus(const State* st) {
-    printf("\n[ÇöÀç »óÅÂ]\n");
-    printf("½ºÆ®·¹½º : %d\n", st->stress);
-    printf("½Ç·Â     : %d\n", st->skill);
-    printf("¿©Ä£     : %s\n\n", st->gf ? "ÀÖÀ½" : "¾øÀ½");
+    printf("\n[í˜„ì¬ ìƒíƒœ]\n");
+    printf("ìŠ¤íŠ¸ë ˆìŠ¤ : %d\n", st->stress);
+    printf("ì‹¤ë ¥     : %d\n", st->skill);
+    printf("ì—¬ì¹œ     : %s\n\n", st->gf ? "ìˆìŒ" : "ì—†ìŒ");
 }
 
 int runEvent(const Event* ev, State* st) {
@@ -21,7 +21,7 @@ int runEvent(const Event* ev, State* st) {
 
     printStatus(st);
 
-    printf("¼±ÅÃ>> ");
+    printf("ì„ íƒ>> ");
     scanf("%d", &choice);
 
     int* chg = NULL;
@@ -35,27 +35,27 @@ int runEvent(const Event* ev, State* st) {
     st->skill += chg[1];
     if (chg[2] == 1) st->gf = 1;
 
-    // ¸»¶Ò ¿£µù ÇÃ·¡±×
+    // ë§ëš ì—”ë”© í”Œë˜ê·¸
     if (choice == 2 && ev->next2 == -1) st->proFlag++;
 
-    // ´ÙÀ½ ÀÌº¥Æ® ¹İÈ¯
+    // ë‹¤ìŒ ì´ë²¤íŠ¸ ë°˜í™˜
     if (choice == 1) return ev->next1;
     if (choice == 2) return ev->next2;
     return ev->next3;
 }
 
 void printEnding(const State* st) {
-    printf("\n======= ¿£µù =======\n");
+    printf("\n======= ì—”ë”© =======\n");
 
     if (st->proFlag >= 1) {
-        printf("Àü¹®ÇÏ»ç ¿£µù\n");
+        printf("ì „ë¬¸í•˜ì‚¬ ì—”ë”©\n");
         return;
     }
 
     if (st->badFlag >= 3) {
-        printf("¸¶À½ÀÇ ÆíÁö ¿£µù\n");
+        printf("ë§ˆìŒì˜ í¸ì§€ ì—”ë”©\n");
         return;
     }
 
-    printf("Àü¿ª\n");
+    printf("ì „ì—­\n");
 }   
