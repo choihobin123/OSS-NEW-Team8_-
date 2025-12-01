@@ -3,9 +3,9 @@
 
 #include "gamefunc.h"
 
-// 2학년 스토리 (총 13개)
+// 2학년 스토리 (총 14개)
 // stateChange: { 스트레스, 학업능력, 여친 여부 }
-static const Event events_y2[13] = {
+static const Event events_y2[14] = {
     {   // 0. 자료구조 (개강)
         .question = "2학년 첫 전공 수업. 칠판에 적힌 포인터와 메모리 구조가 외계어 같다.",
         .choice1 = "이 전공은 안 맞나 보다. 전과를 고민한다.",
