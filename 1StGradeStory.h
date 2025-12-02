@@ -1,5 +1,5 @@
-#ifndef EVENTS_H
-#define EVENTS_H
+#ifndef EVENTS_Y1_H
+#define EVENTS_Y1_H
 
 #include "gamefunc.h"
 

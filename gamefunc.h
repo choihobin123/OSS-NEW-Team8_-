@@ -6,7 +6,7 @@ typedef struct {
     const char* choice1;
     const char* choice2;
     const char* choice3;
-    int stateChange1[3];   // stress, skill, gf
+    int stateChange1[3];  
     int stateChange2[3];
     int stateChange3[3];
     int next1;
@@ -22,7 +22,6 @@ typedef struct {
     int proFlag;
 } State;
 
-// 함수 선언
 int runEvent(const Event* ev, State* st);
 void printStatus(const State* st);
 void printEnding(const State* st);

@@ -2,6 +2,7 @@
 #include "gamefunc.h"
 #include <stdio.h>
 
+
 void printStatus(const State* st) {
     printf("\n[현재 상태]\n");
     printf("스트레스 : %d\n", st->stress);
