@@ -1,0 +1,225 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_CHOICES 3
+#define MAX_SCENES  12
+#define MAX_HISTORY 100
+#define MAX_TEXTLEN 256
+
+typedef struct {
+    const char *text;    // 선택지 내용
+    int nextScene;       // 다음 장면 번호 (없으면 -1)
+    int affectDiscipline;
+    int affectKindness;
+    int affectMorale;
+    int setSealedMouthFlag; // 1이면 플래그 설정
+    int setHelpArmyFlag;    // 1이면 플래그 설정
+} Choice;
+
+typedef struct {
+    int id;
+    const char *description;
+    Choice choices[MAX_CHOICES];
+    int choiceCount;
+} Scene;
+
+/* 장면 데이터 (예시: 질문에 준 원본 스토리 기반) */
+Scene scenes[] = {
+    {1, "자대에 처음 왔다. 무서운 선임이 '야 신병, 니 목소리가 그것밖에 안 나오냐?'라고 꼽을 준다.",
+        {
+            {"매우 큰 소리로 관등성명을 한다.", 2, +1, 0, 0, 0, 0},
+            {"적당히 눈치껏 사과를 한다.", 2, 0, +1, 0, 0, 0},
+            {"침묵을 유지한다.", 2, -1, 0, -1, 0, 0}
+        }, 3},
+    {2, "영하 10도의 겨울 밤. 사수가 졸리다며 몰래 기대서 자라고 한다. '야, 아무도 안와. 너도 좀 자라.'",
+        {
+            {"선임을 따라 같이 잔다.", 3, -1, +1, +1, 0, 0},
+            {"정석대로 근무를 선다.", 3, +1, 0, 0, 0, 0},
+            {"선임을 신고한다.", 3, +2, -2, -1, 0, 0}
+        }, 3},
+    {3, "창문 밖을 보니 폭설이 내리고 있다. 눈이 무릎까지 쌓였다.",
+        {
+            {"남들보다 앞서서 눈을 치운다.", 4, +1, 0, +1, 0, 0},
+            {"적당히 눈치를 보며, 설렁설렁한다.", 4, 0, 0, 0, 0, 0},
+            {"화장실에 숨어 눈을 치우지 않는다.", 4, -1, 0, -1, 0, 0}
+        }, 3},
+    {4, "주말 오후, 선임들이 라면을 먹자고 부른다.",
+        {
+            {"내가 직접 선임들의 맛있게 끓여 대접한다.", 5, +1, +1, +1, 0, 0},
+            {"내 라면만 끓여서 가져온다.", 5, 0, 0, 0, 0, 0},
+            {"배가 아파 먹지 않겠다고 한다.", 5, 0, -1, -1, 0, 0}
+        }, 3},
+    {5, "중대장님이 낀 축구 시합이다. 내가 골키퍼 앞 찬스 상황! 중대장님 팀이 지고 있다.",
+        {
+            {"엄청난 드리블과 함께 골을 넣는다.", 6, +1, 0, +2, 0, 0},
+            {"일부러 헛발질을 하여 중대장님 팀이 이기도록 돕는다.", 6, -1, +1, 0, 0, 0},
+            {"대놓고 멈추고서 골을 넣지 않겠다고 한다.", 6, -2, 0, -1, 0, 0}
+        }, 3},
+    {6, "신병이 잔뜩 얼어서 더블백을 내려놓고 서 있다. 눈빛이 흔들린다. 어떻게 대할까?",
+        {
+            {"무섭게 군기를 잡는다.", 7, +2, -1, 0, 0, 0},
+            {"친절하게 풀어준다.", 7, 0, +2, +1, 0, 0},
+            {"무시한다.", 7, -1, -1, -1, 0, 0}
+        }, 3},
+    {7, "신병에게 관물대 정리를 가르쳐줬는데, 10분 뒤에 가보니 엉망진창이다. 심지어 내 활동복을 깔고 앉아 있다.",
+        {
+            {"화를 내며 신병을 갈군다.", 8, +2, -2, -1, 0, 0},
+            {"화내지 않고 조용히 다시 가르쳐준다.", 8, 0, +1, 0, 0, 0},
+            {"무시한다.", 8, -1, -1, -1, 0, 0}
+        }, 3},
+    {8, "며칠 뒤, 중대장이 신병들을 불러 면담을 했다. 느낌이 쎄하다. 내 이름이 나올까?",
+        {
+            {"신병을 불러 미리 입단속 시킨다.", 9, +1, -1, 0, 1, 0}, // sealed mouth flag set
+            {"당당하게 있는다.", 9, 0, 0, 0, 0, 0},
+            {"(선택지 비워서 일반 진행)", 9, 0, 0, 0, 0, 0}
+        }, 3},
+    {9, "아무것도 안 해도 시간이 안 간다. 행보관님이 작업 인원을 뽑으러 생활관을 기웃거린다.",
+        {
+            {"모포를 뒤집어쓰고 자는 척을 한다.", 10, -1, 0, -1, 0, 0},
+            {"떠나기 전 마지막으로 군대를 위해 돕는다.", 10, +1, +1, +1, 0, 1}, // helpArmyFlag set
+            {"(아무것도 하지 않는다)", 10, 0, 0, 0, 0, 0}
+        }, 3},
+    {10, "종결 장면: 시간이 지나고 전역이 다가온다. 마지막 보고를 한다.",
+        {
+            {"결과 보기", -1, 0, 0, 0, 0, 0},
+            {"(다시 시작)", 1, 0, 0, 0, 0, 0},
+            {"(종료)", -1, 0, 0, 0, 0, 0}
+        }, 3},
+    // sentinel (unused)
+    {0, NULL, {{0}}, 0}
+};
+
+/* 플레이어 상태와 기록 */
+int discipline = 0; // 군기/엄격함
+int kindness   = 0; // 친절함
+int morale     = 0; // 사기/멘탈
+int sealedMouthFlag = 0;
+int helpArmyFlag = 0;
+
+int historyScene[MAX_HISTORY];
+int historyChoiceIdx[MAX_HISTORY];
+int historyCount = 0;
+
+/* 유틸: 현재 장면 찾기 */
+Scene* getSceneById(int id) {
+    for (int i = 0; scenes[i].id != 0; ++i) {
+        if (scenes[i].id == id) return &scenes[i];
+    }
+    return NULL;
+}
+
+/* 엔딩 판정: 요구사항에 따라 우선순위 적용 */
+const char* CheckEnding() {
+    // 우선 특수 엔딩
+    if (discipline >= 2 && sealedMouthFlag) {
+        return "마음의 편지 엔딩";
+    }
+    if (helpArmyFlag) {
+        return "군대 말뚝 엔딩 (전문하사 엔딩 가능)";
+    }
+    // 일반 엔딩 3종류(예시로 3개를 만들되 총 5개로 확장 가능)
+    if (discipline >= 3 && morale >= 1) return "모범병사 엔딩";
+    if (kindness >= 3 && morale >= 1) return "인기병사 엔딩";
+    return "평범 엔딩";
+}
+
+/* 주요 선택 요약 출력 (역사에서 중요한 선택만 추려서 보여줌) */
+void printMajorChoices() {
+    printf("\n=== 주요 선택 요약 ===\n");
+    int shown = 0;
+    for (int i = 0; i < historyCount; ++i) {
+        Scene *sc = getSceneById(historyScene[i]);
+        if (!sc) continue;
+        const Choice *ch = &sc->choices[historyChoiceIdx[i]];
+        // '중요' 판단: 플래그를 바꾼거나 상태 변동이 큰 선택
+        if (ch->setSealedMouthFlag || ch->setHelpArmyFlag ||
+            ch->affectDiscipline >= 2 || ch->affectKindness >= 2 || ch->affectMorale >= 2 ||
+            ch->affectDiscipline <= -2 || ch->affectKindness <= -2 || ch->affectMorale <= -2) {
+            printf("장면 %d 선택: %s\n", sc->id, ch->text);
+            shown++;
+        }
+    }
+    if (shown == 0) {
+        printf("중요한 선택은 특별히 없었습니다. (소소한 행동들이 모여 엔딩을 결정했습니다)\n");
+    }
+}
+
+/* 메인 게임 루프 */
+int main(void) {
+    int current = 1;
+    printf("=== 군대 스토리 인터랙티브 (C 버전) ===\n");
+    printf("숫자 입력으로 선택하세요. 잘못된 입력은 다시 물어봅니다.\n\n");
+
+    while (current != -1) {
+        Scene *sc = getSceneById(current);
+        if (!sc) {
+            printf("알 수 없는 장면(%d). 종료합니다.\n", current);
+            break;
+        }
+
+        printf("장면 %d: %s\n", sc->id, sc->description);
+        for (int i = 0; i < sc->choiceCount; ++i) {
+            printf("  %d) %s\n", i+1, sc->choices[i].text);
+        }
+
+        int sel = 0;
+        while (1) {
+            printf("선택(1-%d): ", sc->choiceCount);
+            if (scanf("%d", &sel) != 1) {
+                // 잘못된 입력 처리
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) {}
+                printf("잘못된 입력입니다. 다시 시도.\n");
+                continue;
+            }
+            if (sel >= 1 && sel <= sc->choiceCount) break;
+            printf("범위를 벗어났습니다. 다시 입력하세요.\n");
+        }
+
+        Choice chosen = sc->choices[sel-1];
+
+        // 상태 적용
+        discipline += chosen.affectDiscipline;
+        kindness   += chosen.affectKindness;
+        morale     += chosen.affectMorale;
+        if (chosen.setSealedMouthFlag) sealedMouthFlag = 1;
+        if (chosen.setHelpArmyFlag) helpArmyFlag = 1;
+
+        // 기록 저장
+        if (historyCount < MAX_HISTORY) {
+            historyScene[historyCount] = sc->id;
+            historyChoiceIdx[historyCount] = sel-1;
+            historyCount++;
+        }
+
+        // 이동
+        if (chosen.nextScene == -1) {
+            // 종료형 선택이면 엔딩 보여주기
+            break;
+        } else {
+            current = chosen.nextScene;
+            // 만약 종결 장면(10)에서 '결과 보기' 선택을 하면 nextScene -1 이므로 엔딩 출력
+            if (current == 10) {
+                // 도달 장면 출력 후 자동으로 결과 보기로 진행
+                // (사용자가 장면 10에서 선택하도록 놔두기 때문에 여기서는 그냥 계속)
+            }
+        }
+
+        printf("\n");
+    }
+
+    // 게임 종료 — 엔딩 판정 및 결과 출력
+    printf("\n=== 플레이 결과 ===\n");
+    printf("최종 상태: 군기(discipline)=%d, 친절(kindness)=%d, 사기(morale)=%d\n",
+           discipline, kindness, morale);
+    printf("특수 플래그: 마음의 입단속(sealedMouth)=%s, 군대 도움(helpArmy)=%s\n",
+           sealedMouthFlag ? "ON" : "OFF", helpArmyFlag ? "ON" : "OFF");
+
+    const char *ending = CheckEnding();
+    printf("\n>>> 도달한 엔딩: %s\n", ending);
+
+    printMajorChoices();
+
+    printf("\n플레이해 주셔서 감사합니다!\n");
+    return 0;
+}
