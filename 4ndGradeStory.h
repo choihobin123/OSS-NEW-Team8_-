@@ -3,7 +3,7 @@
 
 #include "gamefunc.h"
 
-static const Event event_y4[13] = {
+static const Event events_y4[13] = {
 
     {   // 0. 대기업 공채 지원
         .question = "대기업 공채가 시작됐다. 어떻게 할까?",
