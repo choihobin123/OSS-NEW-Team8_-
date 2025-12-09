@@ -1,7 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "gamefunc.h"
 #include <stdio.h>
-
+#include <string.h>
+#include <stdlib.h>
 
 void printStatus(const State* st) {
     printf("\n[현재 상태]\n");
@@ -10,39 +11,77 @@ void printStatus(const State* st) {
     printf("여친     : %s\n\n", st->gf ? "있음" : "없음");
 }
 
-int runEvent(const Event* ev, State* st) {
-    int choice;
+int printOpeningMenu() {
+    char buf[128];
+    long val;
+    char* endptr;
 
-    printf("\n====================================\n");
-    printf("%s\n", ev->question);
-    printf("1) %s\n", ev->choice1);
-    printf("2) %s\n", ev->choice2);
-    printf("3) %s\n", ev->choice3);
-    printf("====================================\n");
+    while (1) { // 유효한 입력이 나올 때까지 반복
+		system("cls");
+        printf("┌──────────────────────────────────────────┐\n");
+        printf("│      인생.exe - 수능 이후                │\n");
+        printf("│  당신의 선택이 한 페이지씩 기록되는 게임 │\n");
+        printf("└──────────────────────────────────────────┘\n\n");
 
-    printStatus(st);
+        printf("  1. 새 게임 시작\n");
+        printf("  2. 게임 설명\n");
+        printf("  3. 종료\n\n");
+        printf("원하는 항목을 숫자로 입력하세요 (1~3): ");
 
-    printf("선택>> ");
-    scanf("%d", &choice);
+        if (!fgets(buf, sizeof(buf), stdin)) {
+            // 입력 실패 처리
+            clearerr(stdin);
+            printf("\n입력 오류가 발생했습니다. 종료 처리합니다.\n");
+            return 3;
+        }
 
-    int* chg = NULL;
+        // 입력 문자열에서 개행 문자 제거
+        size_t len = strlen(buf);
+        if (len > 0 && buf[len - 1] == '\n') {
+            buf[len - 1] = '\0';
+            len--;
+        }
 
-    if (choice == 1) chg = ev->stateChange1, st->badFlag += (ev->stateChange1[0] >= 2);
-    else if (choice == 2) chg = ev->stateChange2;
-    else if (choice == 3) chg = ev->stateChange3;
-    else return -1;
+        // 입력이 비어있는지 확인
+        if (len == 0) {
+            continue;
+        }
 
-    st->stress += chg[0];
-    st->skill += chg[1];
-    if (chg[2] == 1) st->gf = 1;
+        // 숫자 변환 및 검증
+        val = strtol(buf, &endptr, 10);
 
-    // 말뚝 엔딩 플래그
-    if (choice == 2 && ev->next2 == -1) st->proFlag++;
+        // 숫자가 아니거나, 숫자 외 다른 문자가 섞여있다면
+        if (endptr == buf || *endptr != '\0') {
+            printf("잘못된 입력입니다. 숫자(1~3)만 입력하세요.\n\n");
+            continue;
+        }
 
-    // 다음 이벤트 반환
-    if (choice == 1) return ev->next1;
-    if (choice == 2) return ev->next2;
-    return ev->next3;
+        // 유효한 입력 대응
+        if (val == 1) {
+            return 1; // 새 게임 시작
+        }
+        else if (val == 2) {
+            system("cls");
+            // 게임 설명 출력
+            printf("\n=== 게임 설명 ===\n");
+            printf("이 게임은 수능 이후의 공대생 삶을 따라가는 텍스트 기반 인터랙티브 픽션입니다.\n");
+            printf("각 장면에서 제시되는 선택지를 숫자로 입력하면, 선택에 따라 상태(스트레스/실력/여친)\n");
+            printf("이 변화하고 다음 장면으로 이동합니다.\n");
+            printf("\n- 입력 방법: 각 선택지의 번호(1~3)를 입력하세요.\n");
+            printf("- '종료'는 언제든 메인 메뉴에서 선택 가능합니다.\n");
+            printf("\n설명을 읽으셨으면 Enter를 누르세요...");
+            fgets(buf, sizeof(buf), stdin); // Enter 대기
+            printf("\n");
+            // 설명을 읽고 난 후 다시 메뉴를 보여주기 위해 while 루프 재실행
+            continue;
+        }
+        else if (val == 3) {
+            return 3; // 종료
+        }
+        else {
+            continue;
+        }
+    }
 }
 
 void printSpecialEnding(const State* st) {
@@ -82,26 +121,80 @@ void printSpecialEnding(const State* st) {
         printf("[게임중독 엔딩] \"내 피지컬 봤냐? 이건 프로 각이다.\" 착각이었다. 내가 있는 곳은 롤드컵 결승 무대가 아니라 컴컴한 PC방 구석이었다. 쌓여가는 컵라면 용기와 멈춰버린 티어. 현실 로그아웃은 불가능했다.");
         return;
     }
-}   
-
-int printOpeningMenu(){
-    int num;
-    printf("┌────────────────────────────────────────────┐\n");
-    printf("│               인생.exe - 수능 이후          │\n");
-    printf("│   당신의 선택이 한 페이지씩 기록되는 게임     │\n");
-    printf("└────────────────────────────────────────────┘\n\n");
-
-    printf("  1. 새 게임 시작\n");
-    printf("  2. 게임 설명\n");
-    printf("  3. 종료\n\n");
-
-    printf("원하는 항목을 숫자로 입력하세요 (1~3): ");
-
-    scanf("%d",&num);
-    if(num == 1) return 0;
-    else if(num == 2){
-        printf("이겜은~~");
-    }
-
 }
 
+int ask_fixed_question(int idx, State* st, const Event* event) {
+    // 1. 질문지 가져오기
+    // events_y1_fixed 배열에서 idx번째 질문을 가져옴
+    const Event* ev = &event[idx];
+
+    // 2. 화면에 출력 (runEvent 안 쓰고 직접 함)
+    printf("\n[메인 스토리 %d번]\n", idx);
+    printf("Q. %s\n", ev->question);
+    printf(" 1) %s\n", ev->choice1);
+    printf(" 2) %s\n", ev->choice2);
+    printf(" 3) %s\n", ev->choice3);
+
+    // 3. 입력 받기
+    int sel;
+    printf("선택>> ");
+    scanf("%d", &sel);
+
+    // 4. 상태(능력치) 업데이트 직접 계산
+    const int* change = NULL; // 변화량을 가리킬 포인터
+    int next_idx = -1;        // 다음 갈 곳
+
+    if (sel == 1) {
+        change = ev->stateChange1;
+        next_idx = ev->next1;
+    }
+    else if (sel == 2) {
+        change = ev->stateChange2;
+        next_idx = ev->next2;
+    }
+    else {
+        change = ev->stateChange3;
+        next_idx = ev->next3;
+    }
+
+    // 실제 반영
+    st->stress += change[0];
+    st->skill += change[1];
+    if (change[2] == 1) st->gf = 1; // 여친 생김
+
+    printf(">> (결과) 스트레스 %+d, 실력 %+d\n", change[0], change[1]);
+
+    // 5. 다음 질문 번호 반환
+    return next_idx;
+}
+
+// ========================================================
+// [함수 2] 무작위 질문지 하나를 처리하는 함수
+// - 무작위 배열 전체 크기(pool_size)를 받아서 알아서 랜덤으로 뽑음
+// ========================================================
+void ask_random_question(int pool_size, State* st, const Event* event) {
+    // 1. 랜덤으로 하나 뽑기
+    int r = rand() % pool_size;
+    const Event* ev = &event[pool_size];
+
+    printf("\n>>> 🎲 돌발 상황 발생! <<<\n");
+    printf("Q. %s\n", ev->question);
+    printf(" 1) %s\n", ev->choice1);
+    printf(" 2) %s\n", ev->choice2);
+    printf(" 3) %s\n", ev->choice3);
+
+    int sel;
+    printf("선택>> ");
+    scanf("%d", &sel);
+
+    const int* change = NULL;
+    if (sel == 1) change = ev->stateChange1;
+    else if (sel == 2) change = ev->stateChange2;
+    else change = ev->stateChange3;
+
+    st->stress += change[0];
+    st->skill += change[1];
+
+    printf(">> (돌발 결과) 스트레스 %+d, 실력 %+d\n", change[0], change[1]);
+    printf(">>> 상황 종료, 다시 일상으로...\n");
+}

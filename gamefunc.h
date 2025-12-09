@@ -1,7 +1,7 @@
 #ifndef GAMEFUNC_H
 #define GAMEFUNC_H
 
-typedef struct Event{
+typedef struct {
     const char* question;
     const char* choice1;
     const char* choice2;
@@ -28,8 +28,10 @@ typedef struct {
     int badgamerFlag;
 } State;
 
-int runEvent(const Event* ev, State* st);
 void printStatus(const State* st);
-void printEnding(const State* st);
+int printOpeningMenu();
+void printSpecialEnding(const State* st);
+int ask_fixed_question(int idx, State* st, const Event* event);
+void ask_random_question(int pool_size, State* st, const Event* event);
 
 #endif
