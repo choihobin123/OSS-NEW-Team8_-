@@ -87,7 +87,7 @@ static const Event events_y2[14] = {
         .stateChange2 = { -10, -5,  0 },  // 놂 (학업 하락)
         .stateChange3 = { -15, -5,  0 },  // 푹 쉼
         .next1 = 7,
-        .next2 = 7,
+        .next2 = 14, // 게임 이벤트
         .next3 = 7
     },
     {   // 7. 첫 공모전 도전
@@ -130,7 +130,7 @@ static const Event events_y2[14] = {
         .question = "2학년이 끝나간다. 집으로 입영통지서가 날아왔다.",
         .choice1 = "피할 수 없으면 즐겨라. 휴학하고 군대를 택한다.",
         .choice2 = "지금 가는 건 아쉽다. 입대를 미루고 3학년을 준비한다.",
-        .choice3 = NULL
+        .choice3 = NULL,
         .stateChange1 = { 0,   0, -1 },   // 군대/휴학 -> 여친 있으면 이별 확률(설정상 -1)
         .stateChange2 = { +10, +5, 0 },   // 계속함에 대한 압박
         .stateChange3 = { 0,  0,  0 },
@@ -176,6 +176,69 @@ static const Event events_y2[14] = {
         .next1 = 9,
         .next2 = 9,
         .next3 = 12 // >> 횡령 루트
+    },
+
+    // --- 14 ~ 18 PC방 이벤트 ---
+
+    {   // 14. [분기] PC방 게임
+        .question = "친구들과 롤 내전을 진행하게 되었다.",
+        .choice1 = "성능은 나쁘지만 나만 재밌는 챔피언을 한다.",
+        .choice2 = "친구들이 롤을 너무 못한다. 남탓을 해야겠다",
+        .choice3 = "어라? 게임이 너무 쉽다. 상대를 가볍게 이긴다.",
+        .stateChange1 = { -30, 0,  0 },
+        .stateChange2 = { +5,  0,  0 },
+        .stateChange3 = { -10, 0,  0 },
+        .next1 = 15, //롤 내전 - 트롤픽
+        .next2 = 16, // 롤 내전 - 훈수
+        .next3 = 17 // 롤 내전 - 가벼운 승리
+    },
+    {   // 15. [분기] 롤 내전 - 트롤픽
+        .question = "챔피언을 선택하려하자 팀이 나에게 뭐라고 하는것 같다.",
+        .choice1 = "무시한다. 난 내 게임을 즐길 것이다.",
+        .choice2 = "팀에게 미안해졌다. 성능이 좋은 챔피언을 하겠다.",
+        .choice3 = NULL,
+        .stateChange1 = { -50, 0,  0 },
+        .stateChange2 = { 0,   0,  0 },
+        .stateChange3 = { 0,   0,  0 },
+        .next1 = -1, // 트롤 엔딩
+        .next2 = 18,
+        .next3 = -1
+    },
+    {   // 16. [분기] 롤 내전 - 훈수
+        .question = "내가 남탓을 계속 하니 친구들이 나에게 뭐라고 한다.",
+        .choice1 = "내가 너무 심했다. 친구들에게 사과한다.",
+        .choice2 = "친구들이 게임을 못한 잘못이다. 화를 낸다.",
+        .choice3 = "계속 남탓을 한다.",
+        .stateChange1 = { -5,  0,  0 },
+        .stateChange2 = { +10, 0,  0 }, // blameflag += 5
+        .stateChange3 = { +5,  0,  0 }, // blameflag ++ (5회 이상 누적 시 손절엔딩)
+        .next1 = 18,
+        .next2 = -1, // 손절 엔딩
+        .next3 = 16 // 16 무한 루프
+    },
+    {   // 17. [분기] 롤 내전 - 가벼운 승리
+        .question = "가볍게 승리하였다. 나는 게임에 재능이 있는것일까?",
+        .choice1 = "난 게임을 잘하는 것 같다. 프로게이머가 되겠다.",
+        .choice2 = "그저 운이 좋았을 뿐이다.",
+        .choice3 = NULL,
+        .stateChange1 = { 0,  0,  0 }, // badgamerFlag ++;
+        .stateChange2 = { 0,  0,  0 },
+        .stateChange3 = { 0,  0,  0 },
+        .next1 = -1, // 게임 중독 엔딩
+        .next2 = 18,
+        .next3 = -1
+    },
+    {   // 18. [분기] pc방 이벤트 - 마무리
+        .question = "친구들과 게임을 즐겼다. 이제 집으로 돌아갈 시간이다.",
+        .choice1 = "집으로 돌아가 일찍 잔다.",
+        .choice2 = "집으로 돌아가 공부를 하다 잠든다.",
+        .choice3 = "그냥 밤을 새면서 논다."
+        .stateChange1 = { 0,  0,  0 },
+        .stateChange2 = { +5,  +5,  0 },
+        .stateChange3 = { -10,  -10,  0 },
+        .next1 = 7,
+        .next2 = 7,
+        .next3 = 7
     },
 };
 

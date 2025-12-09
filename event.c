@@ -57,5 +57,13 @@ void printEnding(const State* st) {
         return;
     }
 
-    printf("전역\n");
+    if (st->blameFlag >= 5) { //2학년 14,16 스토리 분기점
+        printf("손절 엔딩\n");
+        return;
+    }
+
+    if (st->badgamerFlag >= 1) { //2학년 14,17 스토리 분기점
+        printf("게임중독 엔딩\n");
+        return;
+    }
 }   
