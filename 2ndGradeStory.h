@@ -3,7 +3,7 @@
 
 #include "gamefunc.h"
 
-// 2학년 스토리 (총 14개)
+// 2학년 스토리 (총 18개)
 // stateChange: { 스트레스, 학업능력, 여친 여부 }
 static const Event events_y2[14] = {
     {   // 0. 자료구조 (개강)
