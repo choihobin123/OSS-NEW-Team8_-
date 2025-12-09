@@ -228,6 +228,18 @@ static const Event events_y2[14] = {
         .next2 = 18,
         .next3 = -1
     },
+    {   // 18. [분기] pc방 이벤트 - 마무리
+        .question = "친구들과 게임을 즐겼다. 이제 집으로 돌아갈 시간이다.",
+        .choice1 = "집으로 돌아가 일찍 잔다.",
+        .choice2 = "집으로 돌아가 공부를 하다 잠든다.",
+        .choice3 = "그냥 밤을 새면서 논다."
+        .stateChange1 = { 0,  0,  0 },
+        .stateChange2 = { +5,  +5,  0 },
+        .stateChange3 = { -10,  -10,  0 },
+        .next1 = 7,
+        .next2 = 7,
+        .next3 = 7
+    },
 };
 
 #endif
