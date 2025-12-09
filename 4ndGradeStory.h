@@ -3,7 +3,7 @@
 
 #include "gamefunc.h"
 
-static const Event event_y4[13] = {
+static const Event events_y4[13] = {
 
     // 0~9번 이벤트는 그대로 사용 가능
 
