@@ -192,6 +192,18 @@ static const Event events_y2[14] = {
         .next2 = 16, // 롤 내전 - 훈수
         .next3 = 17 // 롤 내전 - 가벼운 승리
     },
+    {   // 15. [분기] 롤 내전 - 트롤픽
+        .question = "챔피언을 선택하려하자 팀이 나에게 뭐라고 하는것 같다.",
+        .choice1 = "무시한다. 난 내 게임을 즐길 것이다.",
+        .choice2 = "팀에게 미안해졌다. 성능이 좋은 챔피언을 하겠다.",
+        .choice3 = NULL,
+        .stateChange1 = { -50,   0,  0 },
+        .stateChange2 = { 0,   0,  0 },
+        .stateChange3 = { 0,   0,  0 },
+        .next1 = -1, // 트롤 엔딩
+        .next2 = 18,
+        .next3 = -1
+    },
 };
 
 #endif
