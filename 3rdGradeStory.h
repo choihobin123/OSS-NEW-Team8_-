@@ -172,10 +172,10 @@ static const Event events_y3[13] = {
         .stateChange1 = { +10, 0, -1 },
         .stateChange2 = { +5, 0, -1 },
         .stateChange3 = { 0, 0, 0 },
-        .next1 = -1, //연애 분기는 추후 수정 필요
-        .next2 = -1,
+        .next1 = 6, //연애 분기는 추후 수정 필요
+        .next2 = 6,
         .next3 = -1
-    }
+    },
 };
 
 #endif

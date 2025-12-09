@@ -2,6 +2,7 @@
 #include "gamefunc.h"
 #include <stdio.h>
 
+
 void printStatus(const State* st) {
     printf("\n[현재 상태]\n");
     printf("스트레스 : %d\n", st->stress);
@@ -44,20 +45,6 @@ int runEvent(const Event* ev, State* st) {
     return ev->next3;
 }
 
-void printEnding(const State* st) {
-    printf("\n======= 엔딩 =======\n");
-
-    if (st->proFlag >= 1) {
-        printf("전문하사 엔딩\n");
-        return;
-    }
-
-    if (st->badFlag >= 3) {
-        printf("마음의 편지 엔딩\n");
-        return;
-    }
-}  
-
 void printSpecialEnding(const State* st) {
     printf("\n======= 특수 엔딩 =======\n");
 
@@ -96,3 +83,25 @@ void printSpecialEnding(const State* st) {
         return;
     }
 }   
+
+int printOpeningMenu(){
+    int num;
+    printf("┌────────────────────────────────────────────┐\n");
+    printf("│               인생.exe - 수능 이후          │\n");
+    printf("│   당신의 선택이 한 페이지씩 기록되는 게임     │\n");
+    printf("└────────────────────────────────────────────┘\n\n");
+
+    printf("  1. 새 게임 시작\n");
+    printf("  2. 게임 설명\n");
+    printf("  3. 종료\n\n");
+
+    printf("원하는 항목을 숫자로 입력하세요 (1~3): ");
+
+    scanf("%d",&num);
+    if(num == 1) return 0;
+    else if(num == 2){
+        printf("이겜은~~");
+    }
+
+}
+
