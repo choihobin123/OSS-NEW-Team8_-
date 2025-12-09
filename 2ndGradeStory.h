@@ -204,6 +204,18 @@ static const Event events_y2[14] = {
         .next2 = 18,
         .next3 = -1
     },
+    {   // 16. [분기] 롤 내전 - 훈수
+        .question = "내가 남탓을 계속 하니 친구들이 나에게 뭐라고 한다.",
+        .choice1 = "내가 너무 심했다. 친구들에게 사과한다.",
+        .choice2 = "친구들이 게임을 못한 잘못이다. 화를 낸다.",
+        .choice3 = "계속 남탓을 둔다.",
+        .stateChange1 = { +10, 0,  0 },
+        .stateChange2 = { 0,   0,  0 },
+        .stateChange3 = { 0,   0,  0 }, // 남탓 플레그 생성
+        .next1 = 15, //롤 내전 트롤픽
+        .next2 = 16,
+        .next3 = 16 // 
+    },
 };
 
 #endif
