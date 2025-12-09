@@ -175,7 +175,7 @@ static const Event events_y3[13] = {
         .next1 = -1, //연애 분기는 추후 수정 필요
         .next2 = -1,
         .next3 = -1
-    }
+    },
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "gamefunc.h"
 
-static const Event events[20] = {
+static const Event event_y4[13] = {
 
     {   // 0. 대기업 공채 지원
         .question = "대기업 공채가 시작됐다. 어떻게 할까?",
@@ -113,11 +113,11 @@ static const Event events[20] = {
         .stateChange2 = { -10, +5,  0 },
         .stateChange3 = { 0,   +10, 0 },
         .next1 = -1, .next2 = -1, .next3 = -1   // 엔딩 구간
-    }
+    },
 
             //면접 분기점(대기업 엔딩과 이어짐)
 
-     {   // 10. 면접 – 1차 실무면접
+    {   // 10. 면접 – 1차 실무면접
         .question = "실무면접이 시작됐다. 면접관이 질문한다:\n“가장 기억에 남는 프로젝트 경험을 소개해주세요.”",
         .choice1 = "목표-역할-성과를 구조적으로 설명한다.",
         .choice2 = "긴장해서 장황하게 답한다.",
@@ -144,13 +144,12 @@ static const Event events[20] = {
         .choice1 = "지원 동기와 포부를 간결하게 어필한다.",
         .choice2 = "준비한 문장을 길게 읽듯 말한다.",
         .choice3 = "감사 인사만 하고 마무리한다.",
-        .stateChange1 =  { 0, 0, 0 }
-        .stateChange2 =  { 0, 0, 0 }
-        .stateChange3 =  { 0, 0, 0 }
+        .stateChange1 =  { 0, 0, 0 },
+        .stateChange2 =  { 0, 0, 0 },
+        .stateChange3 =  { 0, 0, 0 },
         .next1 = 13, .next2 = -1, .next3 = -1   // 면접 끝 
     },
 
 };
-
 
 #endif
