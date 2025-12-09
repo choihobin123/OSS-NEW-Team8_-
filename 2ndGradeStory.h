@@ -3,9 +3,10 @@
 
 #include "gamefunc.h"
 
-// 2학년 스토리 (총 14개)
+int 
+// 2학년 스토리 (총 18개)
 // stateChange: { 스트레스, 학업능력, 여친 여부 }
-static const Event events_y2[14] = {
+static const Event events_y2[18] = {
     {   // 0. 자료구조 (개강)
         .question = "2학년 첫 전공 수업. 칠판에 적힌 포인터와 메모리 구조가 외계어 같다.",
         .choice1 = "이 전공은 안 맞나 보다. 전과를 고민한다.",
@@ -146,9 +147,9 @@ static const Event events_y2[14] = {
         .choice1 = "인강이라도 결제해서 체계적으로 배운다.",
         .choice2 = "유튜브와 구글링으로 맨땅에 헤딩한다.",
         .choice3 = "오늘은 일단 자고 내일부터 한다.",
-        .stateChange1 = { +5,  +10, 0 },  // 돈 듬, 효과 있음
-        .stateChange2 = { +15, +5,  0 },  // 스트레스 큼, 효과 미미
-        .stateChange3 = { -5,  -5,  0 },  // 나태함
+        .stateChange1 = { +5,  +10, 0 },
+        .stateChange2 = { +15, +5,  0 },
+        .stateChange3 = { -5,  -5,  0 },  // nojobFlag ++
         .next1 = 1,
         .next2 = 1,
         .next3 = -1 // 백수 엔딩
@@ -158,7 +159,7 @@ static const Event events_y2[14] = {
         .choice1 = "조용히 봉투를 주머니에 넣는다.",
         .choice2 = "정의의 이름으로 학과 사무실에 신고한다.",
         .choice3 = "못 본 척하고 조용히 나간다.",
-        .stateChange1 = { -20, 0,  0 },   // 돈 생겨서 스트레스 해소(?) but 도덕성 파괴
+        .stateChange1 = { -20, 0,  0 },   // blackmoneyFlag ++
         .stateChange2 = { +20, 0,  0 },   // 신고 절차 스트레스
         .stateChange3 = { +5,  0,  0 },   // 찜찜함
         .next1 = -1, // 횡령 엔딩
@@ -197,7 +198,7 @@ static const Event events_y2[14] = {
         .choice1 = "무시한다. 난 내 게임을 즐길 것이다.",
         .choice2 = "팀에게 미안해졌다. 성능이 좋은 챔피언을 하겠다.",
         .choice3 = NULL,
-        .stateChange1 = { -50, 0,  0 },
+        .stateChange1 = { -50, 0,  0 }, // gametrollFlag++
         .stateChange2 = { 0,   0,  0 },
         .stateChange3 = { 0,   0,  0 },
         .next1 = -1, // 트롤 엔딩
@@ -232,7 +233,7 @@ static const Event events_y2[14] = {
         .question = "친구들과 게임을 즐겼다. 이제 집으로 돌아갈 시간이다.",
         .choice1 = "집으로 돌아가 일찍 잔다.",
         .choice2 = "집으로 돌아가 공부를 하다 잠든다.",
-        .choice3 = "그냥 밤을 새면서 논다."
+        .choice3 = "그냥 밤을 새면서 논다.",
         .stateChange1 = { 0,  0,  0 },
         .stateChange2 = { +5,  +5,  0 },
         .stateChange3 = { -10,  -10,  0 },

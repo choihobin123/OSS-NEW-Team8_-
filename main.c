@@ -3,8 +3,8 @@
 #include "militaryEvent.h"
 
 int main() {
-    State st = { 0, 0, 0, 0, 0 };  // stress, skill, gf, badFlag, proFlag
-    int current = 100;  // ±º´ë ½ºÅä¸® ½ÃÀÛ
+    State st = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };  // stress, skill, gf, badFlag, proFlag, nojobFlag, blackmoneyFlag, gametrollFlag, blameFlag, badgamerFlag
+    int current = 100;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 
     while (current >= 0) {
         current = runEvent(&eventList[current], &st);
