@@ -59,7 +59,7 @@ void printEnding(const State* st) {
         return;
     }
 
-     if (st->gametrollFlag >= 5) { //2학년 14,15 스토리 분기점
+     if (st->gametrollFlag >= 1) { //2학년 14,15 스토리 분기점
         printf("트롤 엔딩\n");
         printf("\"아니 게임인데 왜 이렇게 진지함? ㅋㅋ\" \n나는 강철심장 유미로 협곡을 누볐다. 나만 재밌었다. \n게임이 끝나자마자 친구들은 조용히 짐을 싸서 나갔다.");
         return;
