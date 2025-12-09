@@ -3,7 +3,7 @@
 #include "militaryEvent.h"
 
 int main() {
-    State st = { 0, 0, 0, 0, 0, 0, 0 };  // stress, skill, gf, badFlag, proFlag, blameFlag, badgamerFlag
+    State st = { 0, 0, 0, 0, 0, 0, 0, 0 };  // stress, skill, gf, badFlag, proFlag, gametrollFlag, blameFlag, badgamerFlag
     int current = 100;  // ���� ���丮 ����
 
     while (current >= 0) {

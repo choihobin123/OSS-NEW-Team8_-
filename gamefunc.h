@@ -20,6 +20,7 @@ typedef struct {
     int gf;
     int badFlag;
     int proFlag;
+    int gametrollFlag;
     int blameFlag;
     int badgamerFlag;
 } State;

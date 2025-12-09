@@ -57,6 +57,11 @@ void printEnding(const State* st) {
         return;
     }
 
+     if (st->gametrollFlag >= 5) { //2학년 14,15 스토리 분기점
+        printf("트롤 엔딩\n");
+        return;
+    }
+
     if (st->blameFlag >= 5) { //2학년 14,16 스토리 분기점
         printf("손절 엔딩\n");
         return;
