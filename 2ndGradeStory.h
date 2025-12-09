@@ -87,7 +87,7 @@ static const Event events_y2[14] = {
         .stateChange2 = { -10, -5,  0 },  // 놂 (학업 하락)
         .stateChange3 = { -15, -5,  0 },  // 푹 쉼
         .next1 = 7,
-        .next2 = 7,
+        .next2 = 14, // 게임 이벤트
         .next3 = 7
     },
     {   // 7. 첫 공모전 도전
@@ -176,6 +176,21 @@ static const Event events_y2[14] = {
         .next1 = 9,
         .next2 = 9,
         .next3 = 12 // >> 횡령 루트
+    },
+
+    // --- 14 ~ 18 PC방 이벤트 ---
+
+    {   // 14. [분기] PC방 게임
+        .question = "친구들과 롤 내전을 진행하게 되었다.",
+        .choice1 = "성능은 나쁘지만 나만 재밌는 챔피언을 한다.",
+        .choice2 = "친구들이 롤을 너무 못한다. 남탓을 해야겠다",
+        .choice3 = "어라? 게임이 너무 쉽다. 상대를 가볍게 이긴다.",
+        .stateChange1 = { -30, 0,  0 },
+        .stateChange2 = { +5,  0,  0 },
+        .stateChange3 = { -10, 0,  0 },
+        .next1 = 15, //롤 내전 - 트롤픽
+        .next2 = 16, // 롤 내전 - 훈수
+        .next3 = 17 // 롤 내전 - 가벼운 승리
     },
 };
 
