@@ -197,7 +197,7 @@ static const Event events_y2[14] = {
         .choice1 = "무시한다. 난 내 게임을 즐길 것이다.",
         .choice2 = "팀에게 미안해졌다. 성능이 좋은 챔피언을 하겠다.",
         .choice3 = NULL,
-        .stateChange1 = { -50,   0,  0 },
+        .stateChange1 = { -50, 0,  0 },
         .stateChange2 = { 0,   0,  0 },
         .stateChange3 = { 0,   0,  0 },
         .next1 = -1, // 트롤 엔딩
@@ -208,13 +208,25 @@ static const Event events_y2[14] = {
         .question = "내가 남탓을 계속 하니 친구들이 나에게 뭐라고 한다.",
         .choice1 = "내가 너무 심했다. 친구들에게 사과한다.",
         .choice2 = "친구들이 게임을 못한 잘못이다. 화를 낸다.",
-        .choice3 = "계속 남탓을 둔다.",
-        .stateChange1 = { +10, 0,  0 },
-        .stateChange2 = { 0,   0,  0 },
-        .stateChange3 = { 0,   0,  0 }, // 남탓 플레그 생성
-        .next1 = 15, //롤 내전 트롤픽
-        .next2 = 16,
-        .next3 = 16 // 
+        .choice3 = "계속 남탓을 한다.",
+        .stateChange1 = { -5,  0,  0 },
+        .stateChange2 = { +10, 0,  0 }, // blameflag += 5
+        .stateChange3 = { +5,  0,  0 }, // blameflag ++ (5회 이상 누적 시 손절엔딩)
+        .next1 = 18,
+        .next2 = -1, // 손절 엔딩
+        .next3 = 16 // 16 무한 루프
+    },
+    {   // 17. [분기] 롤 내전 - 가벼운 승리
+        .question = "가볍게 승리하였다. 나는 게임에 재능이 있는것일까?",
+        .choice1 = "난 게임을 잘하는 것 같다. 프로게이머가 되겠다.",
+        .choice2 = "그저 운이 좋았을 뿐이다.",
+        .choice3 = NULL,
+        .stateChange1 = { 0,  0,  0 }, // badgamerFlag ++;
+        .stateChange2 = { 0,  0,  0 },
+        .stateChange3 = { 0,  0,  0 },
+        .next1 = -1, // 게임 중독 엔딩
+        .next2 = 18,
+        .next3 = -1
     },
 };
 
