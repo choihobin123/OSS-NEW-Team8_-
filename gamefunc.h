@@ -6,6 +6,11 @@ typedef struct {
     const char* choice1;
     const char* choice2;
     const char* choice3;
+
+    const char* result1; // 1번 선택 결과 멘트
+    const char* result2; // 2번 선택 결과 멘트
+    const char* result3; // 3번 선택 결과 멘트
+    
     int stateChange1[4];   // stress, skill, gf, money
     int stateChange2[4];
     int stateChange3[4];

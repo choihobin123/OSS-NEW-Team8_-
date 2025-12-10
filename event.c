@@ -133,7 +133,7 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     printf("Q. %s\n", ev->question);
     printf(" 1) %s\n", ev->choice1);
     printf(" 2) %s\n", ev->choice2);
-    printf(" 3) %s\n", ev->choice3);
+    if (ev->choice3 != NULL) printf(" 3) %s\n", ev->choice3); // NULL 체크 추가
 
     // 3. 입력 받기
     int sel;
@@ -143,18 +143,29 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     // 4. 상태(능력치) 업데이트 직접 계산
     const int* change = NULL; // 변화량을 가리킬 포인터
     int next_idx = -1;        // 다음 갈 곳
+    const char* resultMsg = NULL; // 결과 멘트 포인터 (추가됨)
 
     if (sel == 1) {
         change = ev->stateChange1;
         next_idx = ev->next1;
+        resultMsg = ev->result1;
     }
     else if (sel == 2) {
         change = ev->stateChange2;
         next_idx = ev->next2;
+        resultMsg = ev->result2;
     }
     else {
         change = ev->stateChange3;
         next_idx = ev->next3;
+        resultMsg = ev->result3;
+    }
+
+    // 결과 멘트 출력 (추가된 로직)
+    if (resultMsg != NULL) {
+        printf("\n------------------------------------------------\n");
+        printf(">> %s\n", resultMsg);
+        printf("------------------------------------------------\n");
     }
 
     // 실제 반영
@@ -168,14 +179,14 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     return next_idx;
 }
 
-// ========================================================
-// [함수 2] 무작위 질문지 하나를 처리하는 함수
-// - 무작위 배열 전체 크기(pool_size)를 받아서 알아서 랜덤으로 뽑음
-// ========================================================
+    // ========================================================
+    // [함수 2] 무작위 질문지 하나를 처리하는 함수
+    // - 무작위 배열 전체 크기(pool_size)를 받아서 알아서 랜덤으로 뽑음
+    // ========================================================
 void ask_random_question(int pool_size, State* st, const Event* event) {
     // 1. 랜덤으로 하나 뽑기
     int r = rand() % pool_size;
-    const Event* ev = &event[pool_size];
+    const Event* ev = &event[r];
 
     printf("\n>>> 🎲 돌발 상황 발생! <<<\n");
     printf("Q. %s\n", ev->question);
@@ -188,6 +199,27 @@ void ask_random_question(int pool_size, State* st, const Event* event) {
     scanf("%d", &sel);
 
     const int* change = NULL;
+    const char* resultMsg = NULL;
+
+    if (sel == 1) {
+        change = ev->stateChange1;
+        resultMsg = ev->result1;
+    }
+    else if (sel == 2) {
+        change = ev->stateChange2;
+        resultMsg = ev->result2;
+    }
+    else {
+        change = ev->stateChange3;
+        resultMsg = ev->result3;
+    }
+
+    if (resultMsg != NULL) {
+        printf("\n------------------------------------------------\n");
+        printf(">> %s\n", resultMsg);
+        printf("------------------------------------------------\n");
+    }
+
     if (sel == 1) change = ev->stateChange1;
     else if (sel == 2) change = ev->stateChange2;
     else change = ev->stateChange3;
