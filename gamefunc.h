@@ -17,26 +17,38 @@ typedef struct {
     int next1;
     int next2;
     int next3;
+
+    //엔딩플레그 ++ 하는 변수
+    int badFlagTrigger;
+    int proFlagTrigger;
+    int nojobFlagTrigger;
+    int blackmoneyFlagTrigger;
+    int gametrollFlagTrigger;
+    int blameFlagTrigger;
+    int blame2FlagTrigger;
+    int badgamerFlagTrigger;
+
 } Event;
 
 typedef struct {
     int stress;
     int skill;
     int gf;
-    int badFlag;
-    int proFlag;
-    
-    int nojobFlag;
-    int blackmoneyFlag;
-    int gametrollFlag;
-    int blameFlag;
-    int badgamerFlag;
+
+    //엔딩 플레그
+    int badFlag; // 마음픠 편지
+    int proFlag; // 전문하사
+    int nojobFlag; // 백수
+    int blackmoneyFlag; // 횡령
+    int gametrollFlag; // 트롤
+    int blameFlag; // 손절
+    int blame2Flag; // 손절
+    int badgamerFlag; // 게임중독
 } State;
 
 void printStatus(const State* st);
 int printOpeningMenu();
 void printSpecialEnding(const State* st);
 int ask_fixed_question(int idx, State* st, const Event* event);
-void ask_random_question(int pool_size, State* st, const Event* event);
 
 #endif
