@@ -236,7 +236,8 @@ static const Event events_y2_fixed[19] = {
         .stateChange3 = { -5,  -5,  0 },  // nojobFlag ++
         .next1 = 1,
         .next2 = 1,
-        .next3 = -1 // 백수 엔딩
+        .next3 = -1, // 백수 엔딩
+        .nojobFlagTrigger = 3
     },
     {   // 12. [분기] 횡령 제안
         .question = "학생회 선배가 공금을 빼돌리다 눈이 마주쳤다. 선배가 돈 봉투를 건넨다.",
@@ -252,7 +253,8 @@ static const Event events_y2_fixed[19] = {
         .stateChange3 = { +5,  0,  0 },   // 찜찜함
         .next1 = -1, // 횡령 엔딩
         .next2 = 9,
-        .next3 = 9
+        .next3 = 9,
+        .blackmoneyFlagTrigger = 1
     },
     {   // 13. [분기] 학생회 활동
         .question = "학생회에서 야식마차를 운영할 예정이다.",
@@ -298,12 +300,13 @@ static const Event events_y2_fixed[19] = {
         .result1 = "친구들이 하나둘씩 한숨을 쉰다. 나만 재밌으면 됐지 뭐.",
         .result2 = "결국 메타 챔피언을 골랐다. 팀원들이 안도한다.",
         .result3 = NULL,
-        .stateChange1 = { -50, 0,  0 }, // gametrollFlag++
+        .stateChange1 = { -25, 0,  0 }, // gametrollFlag++
         .stateChange2 = { 0,   0,  0 },
         .stateChange3 = { 0,   0,  0 },
         .next1 = -1, // 트롤 엔딩
         .next2 = 18,
-        .next3 = -1
+        .next3 = -1,
+        .gametrollFlagTrigger = 1
     },
     {   // 16. [분기] 롤 내전 - 훈수
         .question = "내가 남탓을 계속 하니 친구들이 나에게 뭐라고 한다.",
@@ -315,11 +318,13 @@ static const Event events_y2_fixed[19] = {
         .result2 = "\"니들이 못해서 진 거잖아!\" 친구들이 어느 순간부터 말이 없어졌다.",
         .result3 = "\"정글 차이\"를 외쳤다. 친구들의 표정이 점점 굳어진다.",
         .stateChange1 = { -5,  0,  0 },
-        .stateChange2 = { +10, 0,  0 }, // blameflag += 5
-        .stateChange3 = { +5,  0,  0 }, // blameflag ++ (5회 이상 누적 시 손절엔딩)
+        .stateChange2 = { +10, 0,  0 }, // blameflag ++
+        .stateChange3 = { +5,  0,  0 }, // blameflag ++
         .next1 = 18,
         .next2 = -1, // 손절 엔딩
-        .next3 = 16 // 16 무한 루프
+        .next3 = -1, // 손절 엔딩
+        .blameFlagTrigger = 2,
+        .blame2FlagTrigger = 3
     },
     {   // 17. [분기] 롤 내전 - 가벼운 승리
         .question = "가볍게 승리하였다. 나는 게임에 재능이 있는것일까?",
@@ -335,7 +340,8 @@ static const Event events_y2_fixed[19] = {
         .stateChange3 = { 0,  0,  0 },
         .next1 = -1, // 게임 중독 엔딩
         .next2 = 18,
-        .next3 = -1
+        .next3 = -1,
+        .badgamerFlagTrigger = 1
     },
     {   // 18. [분기] pc방 이벤트 - 마무리
         .question = "친구들과 게임을 즐겼다. 이제 집으로 돌아갈 시간이다.",

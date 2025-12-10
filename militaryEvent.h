@@ -33,13 +33,13 @@ static const Event eventList_military[] = {
         .choice3 = "사수를 신고한다.",
         .stateChange1 = { -1, 0, 0 },
         .stateChange2 = { +1, +2, 0 },
-        .stateChange3 = { +3, -3, 0 }, // badFlag++ 가능성
+        .stateChange3 = { +3, -3, 0 },
         .next1 = 2,
         .next2 = 2,
         .next3 = 2,
         .result1 = "꿀잠 잤다. 근데 근무 교대자가 와서 걸렸다. 큰일 났다.",
         .result2 = "\"짜식, FM이네.\" 사수가 츤츤대며 핫팩을 줬다.",
-        .result3 = "마음의 편지에 적었다. 부대가 뒤집어졌다. 내 군생활도 뒤집어졌다."
+        .result3 = "사수를 신고했다. 부대가 뒤집어졌다. 내 군생활도 뒤집어졌다."
     },
 
     // ======= [2] 폭설 =======
@@ -56,7 +56,8 @@ static const Event eventList_military[] = {
         .next3 = 3,
         .result1 = "하늘에서 내리는 쓰레기를 치웠다. 행보관님이 눈여겨본다.",
         .result2 = "빗자루 들고 서 있기만 했다. 손발이 너무 시렵다.",
-        .result3 = "변기에 앉아 잤다. 다리 저려서 나오다 걸렸다."
+        .result3 = "변기에 앉아 잤다. 다리 저려서 나오다 걸렸다.",
+        .proFlagTrigger = 1
     },
 
     // ======= [3] 라면 =======
@@ -107,7 +108,8 @@ static const Event eventList_military[] = {
         .next3 = 6,
         .result1 = "\"군대가 장난이냐?\" 신병 눈에 눈물이 고였다.",
         .result2 = "\"힘들지? 초코파이 하나 먹어.\" 신병이 나를 천사로 본다.",
-        .result3 = "투명인간 취급했다. 신병이 더 불안해한다."
+        .result3 = "투명인간 취급했다. 신병이 더 불안해한다.",
+        .badFlagTrigger = 1
     },
 
     // ======= [6] 신병 엉망진창 =======
@@ -124,7 +126,8 @@ static const Event eventList_military[] = {
         .next3 = 7,
         .result1 = "샤워장으로 끌고 갔다. 내 군생활 꼬이는 소리가 들린다.",
         .result2 = "다시 하나하나 알려줬다. 보살이 된 기분이다.",
-        .result3 = "그냥 내가 치웠다. 이게 마음 편하다."
+        .result3 = "그냥 내가 치웠다. 이게 마음 편하다.",
+        .badFlagTrigger = 1
     },
 
     // ======= [7] 면담 전 =======
@@ -141,7 +144,8 @@ static const Event eventList_military[] = {
         .next3 = 8,
         .result1 = "\"너 알지? 입 조심해라.\" 협박했다. 더 수상해 보인다.",
         .result2 = "난 찔릴 거 없다. 당당하게 PX 가서 냉동 먹었다.",
-        .result3 = "아무 생각 없다. 전역 날짜만 세고 있다."
+        .result3 = "아무 생각 없다. 전역 날짜만 세고 있다.",
+        .badFlagTrigger = 1
     },
 
     // ======= [8] 작업 인원 (마지막) =======
@@ -158,7 +162,8 @@ static const Event eventList_military[] = {
         .next3 = -1, // 군대 엔딩
         .result1 = "행보관님이 지나갔다. 나이스.",
         .result2 = "\"역시 말년병장!\" 행보관님이 전문하사 지원서를 들고 온다.",
-        .result3 = "창고 뒤에 숨었다. 거미줄이 얼굴에 걸렸다."
+        .result3 = "창고 뒤에 숨었다. 거미줄이 얼굴에 걸렸다.",
+        .proFlagTrigger = 2
     }
 };
 
