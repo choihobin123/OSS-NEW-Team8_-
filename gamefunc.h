@@ -50,5 +50,6 @@ void printStatus(const State* st);
 int printOpeningMenu();
 void printSpecialEnding(const State* st);
 int ask_fixed_question(int idx, State* st, const Event* event);
+void typingPrint(const char* text);
 
 #endif
