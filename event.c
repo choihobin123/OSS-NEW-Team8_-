@@ -28,12 +28,10 @@ int printOpeningMenu() {
     int choice;
     while (1) {
         system("cls");
-        printf("┌──────────────────────────────────────────┐\n");
-        printf("│      ");
-        printf(" 인생.exe - 수능 이후 ");
-        printf("              │\n");
-        printf("│  당신의 선택이 한 페이지씩 기록되는 게임 │\n");
-        printf("└──────────────────────────────────────────┘\n\n");
+        printf("┌──────────────────────────────────────────────┐\n");
+        printf("│             인생.exe - 수능 이후             │\n");
+        printf("│    당신의 선택이 한 페이지씩 기록되는 게임   │\n");
+        printf("└──────────────────────────────────────────────┘\n\n");
         printf(" 1. 새 게임 시작\n");
         printf(" 2. 게임 설명\n");
         printf(" 3. 종료\n\n");
@@ -43,7 +41,13 @@ int printOpeningMenu() {
             clearBuffer(); 
             if (choice == 1) return 1;
             if (choice == 2) {
-                printf("\n대학생이 되어 졸업까지 생존하는 게임입니다.\n");
+                printf("\n======== 게임 설명 ========\n\n");
+                printf("이 게임은 수능 이후의 공대생 삶을 따라가는 \n텍스트 기반 인터랙티브 픽션입니다.\n\n");
+                printf("각 장면에서 제시되는 선택지를 숫자로 입력하면, \n선택에 따라 상태변수가 변화하고 다음 장면으로 이동합니다.\n");
+                printf("\n- 입력 방법: 각 선택지의 번호(1~3)를 입력하세요.\n");
+                printf("- '종료'는 언제든 메인 메뉴에서 선택 가능합니다.\n");
+                printf("\n===========================\n");
+                printf("\n설명을 읽으셨으면 Enter를 누르세요...");
                 waitEnter();
                 continue;
             }
@@ -77,12 +81,12 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     system("cls");
 
     // [기존 텍스트 형식 절대 유지]
-    printf("\n====================================\n");
-    printf("%s\n", ev->question);
+    printf("\n====================================\n\n");
+    printf("%s\n\n", ev->question);
     printf("1) %s\n", ev->choice1);
     printf("2) %s\n", ev->choice2);
     if (ev->choice3 != NULL) printf("3) %s\n", ev->choice3);
-    printf("====================================\n");
+    printf("\n====================================\n");
 
     printStatus(st);
 
