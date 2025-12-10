@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include "gamefunc.h"
 #include <windows.h>
@@ -9,7 +11,7 @@
 #include "3rdGradeStory.h" 
 #include "4ndGradeStory.h" 
 
-#define _CRT_SECURE_NO_WARNINGS
+
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
