@@ -3,23 +3,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
+#include <conio.h>   // 키 입력 감지(_kbhit, _getch)용
 
 void typingPrint(const char* text) {
     int i = 0;
-    while (text[i] != '\0') {
+    int skip = 0; // 스킵 모드 플래그 (0: 정상 속도, 1: 즉시 출력)
 
-        if (text[i] & 0x80) { 
-            printf("%c%c", text[i], text[i + 1]);
-            i += 2;
+    while (_kbhit()) _getch();
+
+    while (text[i] != '\0') {
+        if (!skip && _kbhit()) {
+            char ch = _getch();
+            if (ch == '\r') { // 엔터('\r')면 스킵
+                skip = 1;
+            }
+        }
+
+        int charLen = 1;
+        unsigned char c = (unsigned char)text[i];
+
+        // UTF-8 바이트 길이 계산
+        if ((c & 0xF0) == 0xF0) charLen = 4;
+        else if ((c & 0xE0) == 0xE0) charLen = 3; // 한글
+        else if ((c & 0xC0) == 0xC0) charLen = 2;
+        else charLen = 1;
+
+        // 글자 출력
+        for (int j = 0; j < charLen; j++) {
+            printf("%c", text[i + j]);
+        }
+        i += charLen;
+
+        if (!skip) {
+            Sleep(45);      // 출력 속도
+            fflush(stdout); 
         }
         else {
-            printf("%c", text[i]);
-            i++;
+            Sleep(0);       // 스킵 시 딜레이 0 (즉시 출력)
         }
-        
-        Sleep(35); // [속도 조절] 숫자가 클수록 느려짐 (20~30 추천)
-        fflush(stdout);
     }
+    
+    fflush(stdout);
 }
 
 // [보조 함수] 엔터 대기
