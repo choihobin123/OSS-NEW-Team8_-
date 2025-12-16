@@ -25,6 +25,8 @@ int main() {
 
     State st = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
+    Opening();
+
     // ================== 오프닝 ==================
 
     if (printOpeningMenu() == 3) return 0;
@@ -55,7 +57,7 @@ int main() {
 
     // ================== 3학년 ==================
 
-    runGradeLoop("3학년", &st, events_y3, NULL, 0);
+    runGradeLoop("3학년", &st, events_y3_fixed, events_y3_random, 0);
     if (isGameEnd(&st)) { printSpecialEnding(&st); return 0; }
 
     // ================== 4학년 ==================

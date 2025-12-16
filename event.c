@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <conio.h>   // 키 입력 감지(_kbhit, _getch)용
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_ENTER 13
 
 void typingPrint(const char* text) {
     int i = 0;
@@ -66,38 +69,218 @@ void printStatus(const State* st) {
     printf("여친     : %s\n\n", st->gf ? "있음" : "없음");
 }
 
+void setColor(int color) { // [보조 함수] 텍스트 색상 변경
+// color: 7=흰색, 10=연두색, 11=하늘색, 12=빨간색, 14=노란색, 8=회색
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void delay(int milliseconds) {
+    long pause;
+    // 대략적인 루프 횟수 조정 (컴퓨터 성능에 따라 다름)
+    pause = (long)milliseconds * 100000;
+    while (pause--);
+}
+void showLoadingBar(const char* taskName) {
+    setColor(10); // 연두색 (시스템 느낌)
+    printf("\n [SYSTEM] %s...\n", taskName);
+
+    printf(" 0%% [");
+    for (int i = 0; i < 30; i++) printf(" ");
+    printf("]");
+
+    for (int i = 0; i <= 30; i++) {
+        // 커서를 줄 맨 앞으로 이동 (\r)
+        printf("\r");
+
+        // 퍼센트 출력
+        int percent = (i * 100) / 30;
+        setColor(11); // 하늘색
+        printf(" %3d%% [", percent);
+
+        // 게이지 채우기
+        setColor(10); // 연두색
+        for (int j = 0; j < i; j++) printf("=");
+        for (int j = i; j < 30; j++) printf(" ");
+
+        setColor(11); // 하늘색
+        printf("]");
+
+        // 랜덤 딜레이로 리얼함 추가
+        Sleep(rand() % 50 + 20);
+    }
+    printf("\n");
+    Sleep(300);
+    setColor(7); // 다시 흰색 복구
+}
+
+void Opening() {
+    char buf[128];
+    system("cls"); // 화면 초기화
+
+    // 1. 시스템 부팅 시퀀스 (매트릭스 느낌)
+    setColor(10); // 연두색
+    printf("\n Initializing Boot Sequence...\n");
+    Sleep(500);
+    printf(" Checking Memory... OK\n");
+    Sleep(200);
+    printf(" Loading User Data... OK\n");
+    Sleep(200);
+
+    showLoadingBar("Decrypting Memories");
+    showLoadingBar("Syncing Timeline");
+
+    Sleep(1000);
+    system("cls");
+
+    // 2. 타이틀 로고 (ASCII ART)
+    // 폰트가 깨지지 않게 색상 강조
+    setColor(11); // 하늘색 (제목)
+    printf("\n\n");
+    printf("  __       __  ________  ________ \n");
+    printf(" /  |  _  /  |/        |/        |\n");
+    printf(" $$ | / \\ $$ |$$$$$$$$/ $$$$$$$$/ \n");
+    printf(" $$ |/$  \\$$ |$$ |__    $$ |__    \n");
+    printf(" $$ /$$$  $$ |$$    |   $$    |   \n");
+    printf(" $$ $$/$$ $$ |$$$$$/    $$$$$/    \n");
+    printf(" $$$$/  $$$$ |$$ |_____ $$ |_____ \n");
+    printf(" $$$/    $$$ |$$       |$$       |\n");
+    printf(" $$/      $$/ $$$$$$$$/ $$$$$$$$/ \n");
+    printf("\n");
+
+    setColor(14); // 노란색 (부제)
+    printf("      [ 인생.exe : 수능 그 이후 ]\n");
+    printf("      - 공대생 대학 생활 시뮬레이션 -\n");
+    printf("\n\n");
+
+    setColor(8); // 회색 (안내문구)
+    printf("  System Ready. Press [Enter] to Access Diary module...\n");
+
+    // 엔터 대기
+    fflush(stdin);
+    while (getchar() != '\n');
+
+    // 3. 일기장 감성 진입 (화면 전환)
+    system("cls");
+    Sleep(1000);
+
+    setColor(7); // 흰색 (기본)
+    printf("\n\n");
+
+    // 느리게 타이핑되는 감성 멘트
+    typingPrint(" ...시스템이 종료되고, 낡은 일기장이 화면에 나타납니다.\n\n");
+    Sleep(1000);
+
+    typingPrint(" [ 202X년 3월 2일 ]\n");
+    Sleep(500);
+    typingPrint(" 차가운 새벽 공기. 닳아버린 펜을 듭니다.\n");
+    Sleep(1000);
+    typingPrint(" 치열했던 수능이 끝나고, 합격 통지서를 받았던 그날의 기억...\n\n");
+    Sleep(1000);
+
+    typingPrint(" 이제 당신의 4년이 기록됩니다.\n");
+    typingPrint(" 학점, 인간관계, 사랑, 그리고 미래.\n");
+    typingPrint(" 이 일기장의 끝에 무엇이 적혀있을지는...\n\n");
+    Sleep(1500);
+
+    setColor(12); // 빨간색 (강조)
+    typingPrint(" 오직 당신의 선택에 달려있습니다.\n\n");
+
+    setColor(7); // 흰색 복구
+    Sleep(1000);
+
+    printf("==================================================\n");
+    printf("      첫 페이지를 넘기시려면 [Enter]를 누르세요\n");
+    printf("==================================================\n");
+
+    fflush(stdin);
+    // 버퍼 비우고 입력 대기
+    fgets(buf, sizeof(buf), stdin);
+    system("cls");
+}
+
 // 오프닝 메뉴
 int printOpeningMenu() {
-    int choice;
-    while (1) {
-        system("cls");
-        
-        printf("┌──────────────────────────────────────────────┐\n");
-        printf("│             인생.exe - 수능 이후             │\n");
-        printf("│    당신의 선택이 한 페이지씩 기록되는 게임   │\n");
-        printf("└──────────────────────────────────────────────┘\n\n");
-        printf(" 1. 새 게임 시작\n");
-        printf(" 2. 게임 설명\n");
-        printf(" 3. 종료\n\n");
-        printf("선택>> ");
+    int cursor = 0; // 현재 선택된 메뉴 위치 (0: 새게임, 1: 설명, 2: 종료)
+    int key;
 
-        if (scanf("%d", &choice) == 1) {
-            clearBuffer(); 
-            if (choice == 1) return 1;
-            if (choice == 2) {
-                printf("\n======== 게임 설명 ========\n\n");
-                typingPrint("이 게임은 수능 이후의 공대생 삶을 따라가는 \n텍스트 기반 인터랙티브 픽션입니다.\n\n");
-                typingPrint("각 장면에서 제시되는 선택지를 숫자로 입력하면, \n선택에 따라 상태변수가 변화하고 다음 장면으로 이동합니다.\n");
-                typingPrint("\n- 입력 방법: 각 선택지의 번호(1~3)를 입력하세요.\n");
-                typingPrint("- '종료'는 언제든 메인 메뉴에서 선택 가능합니다.\n");
-                printf("\n===========================\n");
-                printf("\n설명을 읽으셨으면 Enter를 누르세요...");
-                waitEnter();
-                continue;
+    while (1) {
+        system("cls"); // 화면 지우기
+
+        // 1. 메인 타이틀 박스 출력
+        setColor(11); // 하늘색
+        printf("\n");
+        printf("  ╔══════════════════════════════════════════════════╗\n");
+        printf("  ║                                                  ║\n");
+        printf("  ║            L I F E . E X E   SYSTEM              ║\n");
+        printf("  ║                                                  ║\n");
+        printf("  ║        [ v1.0 / User: Engineering_Student ]      ║\n");
+        printf("  ║                                                  ║\n");
+        printf("  ╚══════════════════════════════════════════════════╝\n\n");
+
+        // 2. 메뉴 목록 출력
+        const char* menuItems[] = {
+            " NEW GAME (새로운 기록 시작)",
+            " MANUAL   (시스템 설명서)",
+            " SHUTDOWN (시스템 종료)"
+        };
+
+        for (int i = 0; i < 3; i++) {
+            if (i == cursor) {
+                // 선택된 항목: 노란색 + 화살표
+                setColor(14);
+                printf("      ▶  [ %s ]\n\n", menuItems[i]);
             }
-            if (choice == 3) return 3;
-        } else {
-            clearBuffer();
+            else {
+                // 선택 안 된 항목: 회색
+                setColor(8);
+                printf("         %s \n\n", menuItems[i]);
+            }
+        }
+
+        // 3. 하단 안내 문구
+        setColor(7); // 흰색
+        printf("\n  ----------------------------------------------------\n");
+        printf("   [↑/↓]: 이동   [Enter]: 선택 \n");
+
+        // 4. 키 입력 처리
+        key = _getch(); // 키 하나 입력받음
+
+        if (key == 224) { // 특수키(화살표)인 경우
+            key = _getch(); // 실제 키 코드 읽기
+            if (key == KEY_UP) {
+                cursor--;
+                if (cursor < 0) cursor = 2; // 맨 위에서 위로 가면 맨 아래로
+            }
+            else if (key == KEY_DOWN) {
+                cursor++;
+                if (cursor > 2) cursor = 0; // 맨 아래에서 아래로 가면 맨 위로
+            }
+        }
+        else if (key == KEY_ENTER) { // 엔터키 누름
+            // 선택된 커서에 따라 동작 결정
+            if (cursor == 0) {
+                return 1; // 새 게임
+            }
+            else if (cursor == 1) {
+                // 게임 설명 화면
+                system("cls");
+                setColor(10); // 연두색
+                printf("\n\n [ SYSTEM MANUAL ]\n\n");
+
+                setColor(7);
+                typingPrint(" > 본 시뮬레이션은 '공대생'의 대학 생활을 다룹니다.\n\n");
+                typingPrint(" > 매 순간의 선택이 당신의 [학점], [인간관계], [미래]를 결정합니다.\n");
+                typingPrint(" > 현명한 선택으로 최고의 엔딩을 수집하십시오.\n\n");
+
+                setColor(8);
+                printf(" ----------------------------------------\n");
+                printf("  [Enter] 키를 누르면 메인으로 돌아갑니다.\n");
+
+                while (_getch() != 13); // 엔터 칠 때까지 대기
+            }
+            else if (cursor == 2) {
+                return 3; // 종료
+            }
         }
     }
 }
