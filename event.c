@@ -197,7 +197,7 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
 
     printf("\n------------------------------------\n\n");
     if (resultText != NULL) {
-       typingPrint(resultText); // 결과 멘트 출력
+        typingPrint(resultText); // 결과 멘트 출력
     }
     printf("\n\n>> (상태 변화) 스트레스 %+d, 실력 %+d\n", chg[0], chg[1]);
     printf("\n------------------------------------\n");
