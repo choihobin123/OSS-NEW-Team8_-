@@ -20,6 +20,9 @@ typedef struct {
 
     //엔딩플레그 ++ 하는 변수
 
+
+    //==엔딩플레그 ++ 하는 변수==
+
     int badFlagTrigger;
     int proFlagTrigger;
     int nojobFlagTrigger;
@@ -31,6 +34,11 @@ typedef struct {
     int addictionFlagTrigger;
     int healthFlagTrigger;
     int quitFlagTrigger;
+    int graduateFlagTrigger;
+    int byegirlfriendFlagTrigger;
+    int overworkFlagTrigger;
+    int noPortfolioFlagTrigger;
+    int slaveFlagTrigger;
 
 } Event;
 
@@ -39,18 +47,28 @@ typedef struct {
     int skill;
     int gf;
 
-    //엔딩 플레그
+    //==엔딩 플레그==
+    //군대
     int badFlag; // 마음픠 편지
     int proFlag; // 전문하사
+    //2학년
     int nojobFlag; // 백수
     int blackmoneyFlag; // 횡령
     int gametrollFlag; // 트롤
     int blameFlag; // 손절
     int blame2Flag; // 손절
+    
+    //1학년+4학년
     int badgamerFlag; // 게임중독
 	int addictionFlag; // 코인중독
 	int healthFlag; // 건강악화
 	int quitFlag; // 중도포기
+    int graduateFlag; //대학원 엔딩
+    //3학년
+    int byegirlfriendFlag; // 이별
+    int overworkFlag; // 과로
+    int noPortfolioFlag; // 빈 폴더
+    int slaveFlag;
 } State;
 
 void printStatus(const State* st);
@@ -60,4 +78,5 @@ int ask_fixed_question(int idx, State* st, const Event* event);
 void typingPrint(const char* text);
 void Opening();
 void printEnding(const State* st);
-#endif
+
+#endif;

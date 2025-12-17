@@ -13,6 +13,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "비싸도 콘센트 있는 자리에 앉아 오래 버틴다.",
         .choice2    = "짧게 할 일만 끝내고 바로 나온다.",
         .choice3    = "괜히 돈 아깝다. 그냥 집에 가서 쉰다.",
+
         .result1    = "소음 속에서도 집중하는 방법을 조금 배운 느낌이다.",
         .result2    = "해야 할 일만 딱 끝내고 나오니 효율은 나쁘지 않았다.",
         .result3    = "오늘 공부는 글렀지만, 피로는 확실히 회복됐다.",
@@ -30,6 +31,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "침착하게 저장하고 재부팅한다.",
         .choice2    = "설정을 뒤져서 원인을 찾아본다.",
         .choice3    = "일단 쉬었다가 다시 하기로 한다.",
+
         .result1    = "과제 파일을 지키고 상황도 안정됐다.",
         .result2    = "설정을 만지다 보니 유용한 기능들을 몇 개 알게 됐다.",
         .result3    = "쉬는 동안 긴장은 풀렸지만 진도가 꽤 밀렸다.",
@@ -47,6 +49,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "다른 항목부터 작성한다.",
         .choice2    = "예시 문장을 찾아보며 영감을 얻는다.",
         .choice3    = "해당 문장만 붙잡고 계속 고민한다.",
+
         .result1    = "흐름을 바꾸자 막혔던 부분이 자연스럽게 풀렸다.",
         .result2    = "좋은 표현을 참고해 문장이 매끄러워졌다.",
         .result3    = "30분을 썼지만 진전이 거의 없다.",
@@ -64,6 +67,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "우선순위를 정해 몇 개만 제대로 준비한다.",
         .choice2    = "일단 보이는 곳은 전부 지원한다.",
         .choice3    = "오늘은 정리만 하고 지원은 나중에 한다.",
+
         .result1    = "자소서의 완성도가 꽤 높아졌다.",
         .result2    = "양은 많지만 퀄리티 유지가 어렵다.",
         .result3    = "정리만 하다가 지원은 하나도 못 했다.",
@@ -81,6 +85,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "며칠은 제대로 쉰다.",
         .choice2    = "약만 먹고 그대로 버틴다.",
         .choice3    = "운동과 식단을 조금씩 관리한다.",
+
         .result1    = "몸은 확실히 가벼워졌다.",
         .result2    = "카페인 의존이 늘어 버텼다.",
         .result3    = "컨디션이 서서히 좋아진다.",
@@ -98,6 +103,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "시간을 내어 자세히 알려준다.",
         .choice2    = "핵심만 간단히 말해준다.",
         .choice3    = "바쁘다며 다음으로 미룬다.",
+
         .result1    = "후배에게 고맙다는 말을 듣고 뿌듯했다.",
         .result2    = "필요한 말은 했지만 약간 미안하다.",
         .result3    = "내가 받았던 도움을 떠올리며 찜찜하다.",
@@ -115,6 +121,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "알림을 전부 끄고 다시 집중한다.",
         .choice2    = "간단히 확인만 하고 돌아간다.",
         .choice3    = "SNS까지 들어가 버린다.",
+
         .result1    = "금방 다시 몰입 상태를 찾았다.",
         .result2    = "약간 흐름은 끊겼지만 괜찮다.",
         .result3    = "짧게 보려다 한참을 날려버렸다.",
@@ -132,6 +139,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "매뉴얼을 찾아보고 직접 해결한다.",
         .choice2    = "학교 공용 프린터를 이용한다.",
         .choice3    = "전자 파일 제출로 대신 요청한다.",
+
         .result1    = "생각보다 간단히 해결되었다.",
         .result2    = "줄을 서느라 시간이 좀 걸렸다.",
         .result3    = "교수님이 이해해 주셨지만 추후 출력이 필요하다.",
@@ -149,6 +157,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "부족하지만 지금까지 한 내용만 정리해 간다.",
         .choice2    = "양으로 밀어붙여 대충 채워 간다.",
         .choice3    = "부담돼서 그냥 못 간다고 한다.",
+
         .result1    = "부족한 부분을 지적받으며 개선 방향을 알게 됐다.",
         .result2    = "양은 많았지만 핵심이 부족했다.",
         .result3    = "다음 모임에 가기 더 어색해졌다.",
@@ -166,6 +175,7 @@ static const Event events_y3_random[10] = {
         .choice1    = "배속을 올려서 전부 듣는다.",
         .choice2    = "중요한 부분만 골라 듣는다.",
         .choice3    = "출석 체크만 하고 넘긴다.",
+
         .result1    = "강의 목록이 모두 완료로 바뀌었다.",
         .result2    = "핵심은 챙겼지만 조금 찝찝하다.",
         .result3    = "언젠가 다시 들어야 할 리스트가 늘었다.",
@@ -183,7 +193,7 @@ static const Event events_y3_random[10] = {
 
 
 // [고정 질문지] : 순서대로 진행될 메인 스토리
-static const Event events_y3_fixed[20] = {
+static const Event events_y3_fixed[22] = {
 
     {
         // 0. 취업 스터디 제안
@@ -191,6 +201,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "주 3회 참여하며 제대로 준비한다.",
         .choice2    = "주 1회 가볍게 참여한다.",
         .choice3    = "독학이 편하다. 혼자 준비한다.",
+
         .result1    = "강도 높은 스터디가 힘들지만 실력은 빠르게 오른다.",
         .result2    = "부담은 덜하지만 성장은 조금 느린 편이다.",
         .result3    = "혼자 준비하니 속도는 느리지만 안정적이다.",
@@ -208,6 +219,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "준비를 단단히 해서 도전한다.",
         .choice2    = "소규모 스타트업이라도 상관없다. 일단 지원한다.",
         .choice3    = "아직 준비가 부족한 것 같아 이번엔 넘긴다.",
+
         .result1    = "탄탄한 준비 덕분에 서류 경쟁력이 올라갔다.",
         .result2    = "빠르게 다양한 실무를 경험할 기회를 노린다.",
         .result3    = "기초를 다질 시간을 확보했다.",
@@ -225,6 +237,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "학원 등록 후 제대로 준비한다.",
         .choice2    = "인강으로 차근차근 독학한다.",
         .choice3    = "자격증보다 전공 성적에 집중한다.",
+
         .result1    = "정해진 커리큘럼 덕분에 빠르게 진도가 나간다.",
         .result2    = "꾸준함이 중요하다는 걸 뼈저리게 느꼈다.",
         .result3    = "전공 수업 이해도가 눈에 띄게 올라간다.",
@@ -242,6 +255,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "팀장을 맡아 전체 진행을 책임진다.",
         .choice2    = "핵심 파트를 맡아 결과로 보여준다.",
         .choice3    = "최소한의 역할만 맡고 조용히 넘어간다.",
+
         .result1    = "리더십과 협업 경험이 크게 쌓였다.",
         .result2    = "힘들었지만 실력을 확실히 보여줬다.",
         .result3    = "팀원들의 눈치가 조금 보인다.",
@@ -259,6 +273,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "어학 준비까지 해서 정식으로 도전한다.",
         .choice2    = "방학 단기 연수 정도만 고려한다.",
         .choice3    = "해외보다 국내 경험이 더 중요하다고 생각한다.",
+
         .result1    = "교환학생 요건을 메모하며 준비 계획을 세운다.",
         .result2    = "짧은 연수 프로그램을 찾아보며 상상만으로도 설렌다.",
         .result3    = "국내 인턴·공모전 정보를 정리하기 시작한다.",
@@ -276,6 +291,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "대화를 시도하며 서로 시간을 조율한다.",
         .choice2    = "좋게 이야기하고 이별을 택한다.",
         .choice3    = "정리를 미루고 애매하게 유지한다.",
+
         .result1    = "서로의 스케줄을 이해하며 어느 정도 균형을 찾았다.",
         .result2    = "힘들었지만 서로의 앞날을 응원하며 정리했다.",
         .result3    = "애매한 분위기 속에서 불안함이 계속 쌓인다.",
@@ -293,6 +309,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "매주 참석하며 깊게 공부한다.",
         .choice2    = "관심 있는 주제만 골라 듣는다.",
         .choice3    = "자료만 받고 가볍게 넘긴다.",
+
         .result1    = "연구실·현업 이야기를 들으며 진로에 대한 시야가 넓어졌다.",
         .result2    = "듣고 싶은 강의만 골라 듣다 보니 부담은 적었다.",
         .result3    = "PPT만 쌓여 가고 실제로 보는 날은 잘 오지 않는다.",
@@ -310,6 +327,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "장기 프로젝트형 활동에 참여한다.",
         .choice2    = "공모전에 나가 경험을 쌓는다.",
         .choice3    = "개인 포트폴리오에 집중한다.",
+
         .result1    = "기업 멘토와 함께하는 프로젝트에 합류했다.",
         .result2    = "밤샘 아이디어 회의를 통해 결과물을 완성했다.",
         .result3    = "깃허브와 노션에 개인 프로젝트가 하나씩 늘어난다.",
@@ -327,6 +345,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "학업에 집중하기 위해 알바를 그만둔다.",
         .choice2    = "근무 시간을 줄이고 버텨본다.",
         .choice3    = "돈이 급해서 그대로 유지한다.",
+
         .result1    = "통장은 슬퍼졌지만 공부할 에너지가 생겼다.",
         .result2    = "주말 위주로만 일하며 겨우 균형을 맞춘다.",
         .result3    = "통장은 웃지만 몸이 먼저 한계 신호를 보낸다.",
@@ -335,7 +354,7 @@ static const Event events_y3_fixed[20] = {
         .stateChange3 = { -10,-10, 0 },
         .next1 = 9,
         .next2 = 9,
-        .next3 = 9
+        .next3 = 20 // 건강 악화 스토리
     },
 
     {
@@ -344,6 +363,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "학교 진로 상담센터를 찾아간다.",
         .choice2    = "졸업한 선배에게 조언을 구한다.",
         .choice3    = "인터넷 후기만 보며 혼자 결정한다.",
+
         .result1    = "상담사와 함께 강점·약점을 정리하며 로드맵을 짰다.",
         .result2    = "선배의 현실적인 조언을 들으며 방향을 조금 더 구체화했다.",
         .result3    = "정보는 많지만 머릿속은 더 혼란스러워졌다.",
@@ -361,15 +381,17 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "시간을 들여 제대로 포트폴리오를 만든다.",
         .choice2    = "지원에 쓸 것만 골라 간단히 정리한다.",
         .choice3    = "귀찮아서 나중에 몰아서 하기로 한다.",
+
         .result1    = "보기만 해도 뿌듯한 포트폴리오가 완성되었다.",
         .result2    = "지원용 최소한의 정리는 끝냈다.",
-        .result3    = "‘포트폴리오_최종_진짜’ 폴더만 늘어간다.",
+        .result3    = "‘포트폴리오_최종_진짜’ 폴더만 늘어간다.", // noPortfolioFlag ++
         .stateChange1 = { 15, 20, 0 },
         .stateChange2 = {  5, 10, 0 },
         .stateChange3 = { -5, -5, 0 },
         .next1 = 11,
         .next2 = 11,
-        .next3 = 11
+        .next3 = -1,
+        .noPortfolioFlagTrigger = 3
     },
 
     {
@@ -378,6 +400,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "주 2회 꾸준히 나가며 연습한다.",
         .choice2    = "경험 삼아 몇 번만 나가본다.",
         .choice3    = "어색해서 가지 않기로 한다.",
+
         .result1    = "면접 스킬이 많이 늘어나 자신감이 생겼다.",
         .result2    = "실전 감각이 어떤 느낌인지 맛은 봤다.",
         .result3    = "영상으로만 모범 답안을 보며 상상에 의존한다.",
@@ -395,6 +418,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "매일 시간을 정해 문제를 풀며 대비한다.",
         .choice2    = "지원할 회사 시험만 최소한으로 준비한다.",
         .choice3    = "일단 직무 공부부터 하고 시험은 나중에 본다.",
+
         .result1    = "문제를 많이 풀수록 자신감이 조금씩 생긴다.",
         .result2    = "간신히 커트라인만 넘길 것 같은 느낌이다.",
         .result3    = "이론은 알지만 시험 형식은 여전히 낯설다.",
@@ -412,6 +436,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "휴학해서 취업 준비에 올인한다.",
         .choice2    = "계획대로 4년 안에 졸업한다.",
         .choice3    = "반학기만 휴학해 인턴과 취준을 병행한다.",
+
         .result1    = "시간은 넉넉하지만 스스로 계획을 세워야 한다.",
         .result2    = "학사 일정 안에서 틈틈이 준비를 이어간다.",
         .result3    = "학교와 인턴을 오가며 체력은 힘들지만 경험치는 쌓인다.",
@@ -429,6 +454,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "질문을 준비해 끝까지 남아 네트워킹한다.",
         .choice2    = "발표만 듣고 조용히 나온다.",
         .choice3    = "자료만 받아보고 가지 않는다.",
+
         .result1    = "현직자 명함과 현실적인 조언을 얻었다.",
         .result2    = "대략적인 채용 일정과 우대 사항을 파악했다.",
         .result3    = "슬라이드만 남고 실제 사람 얼굴은 떠오르지 않는다.",
@@ -446,6 +472,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "친한 친구들과 팀을 짜서 아이디어를 구체화한다.",
         .choice2    = "혼자서도 가능한 주제를 찾아본다.",
         .choice3    = "취업 준비가 먼저라 지금은 미룬다.",
+
         .result1    = "화이트보드를 가득 채우며 프로젝트 방향을 잡았다.",
         .result2    = "작지만 확실히 끝낼 수 있는 주제를 몇 개 골랐다.",
         .result3    = "대신 자소서와 포트폴리오에 들어갈 소재를 더 깊게 파본다.",
@@ -462,16 +489,18 @@ static const Event events_y3_fixed[20] = {
         .question   = "교수님이 대학원을 추천하며 연구도 잘할 것 같다고 하신다.",
         .choice1    = "연구 직업도 염두에 두고 진지하게 고민한다.",
         .choice2    = "취업 준비에 집중하겠다고 말씀드린다.",
-        .choice3    = "당장은 결정을 미루고 정보를 더 모은다.",
+        .choice3    = "당장은 결정을 미루고 정보를 더 모은다.", // 
+
         .result1    = "교수님과 면담을 잡아 연구 주제와 진로를 들어본다.",
         .result2    = "취업 로드맵에 더 힘을 싣기로 했다.",
         .result3    = "대학원·취업 설명회를 모두 체크하며 비교해 보기로 한다.",
         .stateChange1 = {  5, 10, 0 },
         .stateChange2 = {  5,  5, 0 },
         .stateChange3 = {  3,  0, 0 },
-        .next1 = 17,
+        .next1 = -1, // 대학원 엔딩
         .next2 = 17,
-        .next3 = 17
+        .next3 = 17,
+        .slaveFlagTrigger = 1
     },
 
     {
@@ -480,6 +509,7 @@ static const Event events_y3_fixed[20] = {
         .choice1    = "고생했다. 남은 1년도 이렇게만 달려보자고 다짐한다.",
         .choice2    = "아쉬운 부분을 적어 두고 4학년 때 보완하기로 한다.",
         .choice3    = "그래도 여기까지 온 나를 칭찬하며 푹 쉰다.",
+
         .result1    = "달력과 플래너를 넘기며 다시 각오를 다진다.",
         .result2    = "노트 한 쪽에 ‘4학년 목표 리스트’를 적어 내려간다.",
         .result3    = "잠깐은 아무것도 하지 않는 시간을 보내기로 했다.",
@@ -509,20 +539,43 @@ static const Event events_y3_fixed[20] = {
     },
 
     {
-        // 19. 연애 위기 심화 (2지선다 예시)
+        // 19. 연애 위기 심화
         .question   = "연애를 애매하게 이어가다 보니, 서로 오해와 불만이 쌓여만 간다.",
         .choice1    = "솔직하게 이야기하며 관계를 정리한다.",
         .choice2    = "취업 준비가 우선이라고 말하고 연애를 끝낸다.",
-        .choice3    = NULL,
+        .choice3    = "나를 이해하지 못하는 여자친구에게 화를 낸다.",
+
         .result1    = "긴 대화 끝에 각자의 길을 가기로 하고 마음이 가벼워졌다.",
         .result2    = "미안함은 남았지만 앞으로의 시간은 나를 위해 쓰기로 했다.",
-        .result3    = NULL,
+        .result3    = "결국 감정을 주체하지 못하고 화를 냈다.", // byegirlfriendFlag ++
         .stateChange1 = { 15,  0, -1 },
         .stateChange2 = { 10,  5, -1 },
         .stateChange3 = {  0,  0,  0 },
         .next1 = 6,
         .next2 = 6,
-        .next3 = 0
+        .next3 = -1,
+        .byegirlfriendFlagTrigger = 3
+
+    },
+
+    {
+        // 20. 악화된 건강
+        .question   = "무리한 알바와 과제의 병행으로 인해 건강이 나빠졌다.",
+        .choice1    = "건강 회복을 위해 휴식을 취한다.",
+        .choice2    = "일을 조금만 줄인다.",
+        .choice3    = "이대로 유지한다.",
+
+        .result1    = "나빠진 건강이 회복되는게 눈에 보인다.",
+        .result2    = "이전보다는 괜찮아졌지만, 여전히 건강은 좋지 않다.",
+        .result3    = "결국 알바를 하던 중 쓰러지고 말았다.", // overworkFlag ++
+        .stateChange1 = {-10,  0,  0 },
+        .stateChange2 = { 10,  5,  0 },
+        .stateChange3 = {  0,  0,  0 },
+        .next1 = 6,
+        .next2 = 6,
+        .next3 = -1,
+        .overworkFlagTrigger = 3
+
     }
 
 };

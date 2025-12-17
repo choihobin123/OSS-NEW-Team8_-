@@ -48,7 +48,7 @@ static const Event eventList_military[] = {
         .choice1 = "남들보다 앞서서 눈을 치운다.",
         .choice2 = "적당히 설렁설렁한다.",
         .choice3 = "화장실에 숨어서 일 안 한다.",
-        .stateChange1 = { +2, +2, 0 }, // proFlag++ 가능성
+        .stateChange1 = { +2, +2, 0 },
         .stateChange2 = { 0, -1, 0 },
         .stateChange3 = { -2, 0, 0 },
         .next1 = 3,
@@ -57,7 +57,6 @@ static const Event eventList_military[] = {
         .result1 = "하늘에서 내리는 쓰레기를 치웠다. 행보관님이 눈여겨본다.",
         .result2 = "빗자루 들고 서 있기만 했다. 손발이 너무 시렵다.",
         .result3 = "변기에 앉아 잤다. 다리 저려서 나오다 걸렸다.",
-        .proFlagTrigger = 1
     },
 
     // ======= [3] 라면 =======

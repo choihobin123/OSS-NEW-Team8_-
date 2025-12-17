@@ -82,6 +82,7 @@ void delay(int milliseconds) {
     pause = (long)milliseconds * 100000;
     while (pause--);
 }
+
 void showLoadingBar(const char* taskName) {
     setColor(10); // 연두색 (시스템 느낌)
     printf("\n [SYSTEM] %s...\n", taskName);
@@ -113,6 +114,16 @@ void showLoadingBar(const char* taskName) {
     printf("\n");
     Sleep(300);
     setColor(7); // 다시 흰색 복구
+}
+
+void loadingBar() { // 챕터 넘어갈 때 로딩바
+    printf("\n    Loading: [");
+    for (int i = 0; i < 20; i++) {
+        printf("■");
+        Sleep(30); // 0.03초 딜레이 (좌르륵 차오르는 효과)
+    }
+    printf("] COMPLETE!\n");
+    Sleep(500); // 잠시 대기
 }
 
 void Opening() {
@@ -218,9 +229,9 @@ int printOpeningMenu() {
 
         // 2. 메뉴 목록 출력
         const char* menuItems[] = {
-            " NEW GAME (새로운 기록 시작)",
-            " MANUAL   (시스템 설명서)",
-            " SHUTDOWN (시스템 종료)"
+            " 새 게임 시작 ",
+            " 시스템 설명서 ",
+            " 시스템 종료 "
         };
 
         for (int i = 0; i < 3; i++) {
@@ -264,7 +275,7 @@ int printOpeningMenu() {
                 // 게임 설명 화면
                 system("cls");
                 setColor(10); // 연두색
-                printf("\n\n [ SYSTEM MANUAL ]\n\n");
+                printf("\n\n [ 시스템 설명서 ]\n\n");
 
                 setColor(7);
                 typingPrint(" > 본 시뮬레이션은 '공대생'의 대학 생활을 다룹니다.\n\n");
@@ -296,10 +307,17 @@ int isGameEnd(const State* st) {
     if (st->blameFlag >= 1) return 1;       // 손절
     if (st->blame2Flag >= 1) return 1;      // 손절
     if (st->badgamerFlag >= 1) return 1;    // 게임중독
+
 	if (st->addictionFlag >= 1) return 1;   // 코인중독
 	if (st->healthFlag >= 1) return 1;     // 건강악화
 	if (st->quitFlag >= 1)return 1;         // 중도포기
 	if (st->graduateFlag >= 1) return 1;        // 대학원 진학   
+
+    if (st->byegirlfriendFlag >= 1) return 1; // 이별
+    if (st->overworkFlag >= 1) return 1; // 과로
+    if (st->noPortfolioFlag >= 1) return 1; // 빈 폴더
+    if (st->slaveFlag >= 1) return 1; // 대학원
+
     return 0; // 게임 계속 진행 가능
 }
 
@@ -312,7 +330,7 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
 
     // [기존 텍스트 형식 절대 유지]
     printf("\n====================================\n\n");
-    printf("%s\n\n", ev->question);
+    printf("%s\n\n", ev->question); 
     printf("1) %s\n", ev->choice1);
     printf("2) %s\n", ev->choice2);
     if (ev->choice3 != NULL) printf("3) %s\n", ev->choice3);
@@ -375,6 +393,7 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
 
     if (ev->blame2FlagTrigger == choice) st->blame2Flag++;
 
+
 	if (ev->addictionFlagTrigger == choice) st->addictionFlag++;
 
 	if (ev->healthFlagTrigger == choice) st->healthFlag++;
@@ -382,6 +401,15 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
 	if (ev->quitFlagTrigger == choice) st->quitFlag++;
 
 	if (ev->graduateFlagTrigger == choice) st->graduateFlag++;
+
+    if (ev->byegirlfriendFlagTrigger == choice) st->byegirlfriendFlag++;
+
+    if (ev->overworkFlagTrigger == choice) st->overworkFlag++;
+
+    if (ev->noPortfolioFlagTrigger == choice) st->noPortfolioFlag++;
+
+    if (ev->slaveFlagTrigger == choice) st->slaveFlag++;
+
 
     // ==========================================================
 
@@ -418,7 +446,7 @@ void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const 
     int current = 0;
     
     system("cls");
-    printf("=== %s 시작 ===\n", title);
+    showChapterTransition(title);
     waitEnter();
 
     // 메인 스토리 루프
@@ -488,6 +516,7 @@ void printSpecialEnding(const State* st) {
     else if (st->badgamerFlag >= 1) {
         typingPrint("[게임중독 엔딩] \n\n\"내 피지컬 봤냐? 이건 프로 각이다.\" \n\n착각이었다. \n내가 있는 곳은 롤드컵 결승 무대가 아니라 컴컴한 PC방 구석이었다. \n쌓여가는 컵라면 용기와 멈춰버린 티어. \n현실 로그아웃은 불가능했다.");
     }
+
     else if (st->addictionFlag >= 1) {
 		typingPrint("[코인중독 엔딩] \n\n\"이번에 대박 날 거야. 이번엔 진짜야.\" \n\n화면 속 숫자가 춤춘다. \n내 통장은 바닥났고, 빚은 눈덩이처럼 불어났다. \n현실 도피처로 삼은 가상화폐는 나를 더 깊은 나락으로 밀어넣었다.");
     }
@@ -499,6 +528,20 @@ void printSpecialEnding(const State* st) {
     }
     else if (st->graduateFlag >= 1) {
 		typingPrint("[대학원 엔딩] \n\n\"교수님, 저 대학원에 합격했어요!\" \n\n나는 학사모 대신 연구실 책더미 속에서 미래를 준비했다. \n끝없는 실험과 논문 작성 속에서 나는 진정한 배움의 길을 걸었다.");
+    }
+
+
+    else if(st->byegirlfriendFlag >= 1){
+        typingPrint("[이별 엔딩] \n\n\"우리... 그만하자.\" \n\n그 한마디가 내 세상의 전원을 꺼버렸다. \n아무것도 손에 잡히지 않는다. 전공책도, 게임도, 밥 먹는 것조차 귀찮다. \n방 구석에 쌓여가는 술병만큼 내 학점도, 내 인생도 무너져 내렸다. 나는 방 밖으로 나가는 문을 잠가버렸다.");
+    }
+    else if(st->overworkFlag >= 1){
+        typingPrint("[과로 엔딩] \n\n\"어서오세...요...\" \n\n편의점 계산대의 바코드가 2개로 겹쳐 보이기 시작했다.\n새벽 알바가 끝나면 쉴 틈 없이 1교시 수업으로, 그리고 다시 과제로... 카페인으로 억지로 붙잡고 있던 정신줄이 툭 하고 끊어졌다.\n\n\"학생! 학생!! 정신 차려!!\"\n\n눈을 떴을 때 보인 건 하얀 병원 천장뿐이었다. 의사 선생님은 단호한 표정으로 휴학 진단서를 내밀었다. 통장 잔고는 조금 찼을지 몰라도, 내 몸은 완전히 방전되어 버렸다.");
+    }
+    else if(st->noPortfolioFlag >= 1){
+        typingPrint("[빈 폴더 엔딩] \n\n\"지원 마감 10분 전.\"\n바탕화면은 '새 폴더', '최종', '진짜_최종', '진짜_진짜_최종'으로 가득 차 있다.\n하지만 정작 클릭해 보면 정리되지 않은 스크린샷과 의미 없는 메모장 파일뿐.\n\n\"이것도 나중에... 저것도 나중에...\"\n\n미래의 나에게 미뤘던 빚이 쓰나미가 되어 돌아왔다.\n남들은 결과물을 멋진 PDF로 뽐내는데, 내 모니터엔 빈 폴더만 깜빡거린다.\n제출 버튼을 누르지 못하고 창을 닫았다. 내 대학 생활은 '제목 없음'으로 끝났다.");
+    }
+    else if(st->slaveFlag >=1 ){
+        typingPrint("[대학원 엔딩] \n\n\"자네, 연구에 재능이 있어. 대학원 생각 없나?\"\n\n교수님의 달콤한 제안. 그리고 정신을 차려보니 나는 랩실 책상 앞에 앉아 있다.\n친구들이 취업해서 첫 월급을 자랑할 때, 나는 밤새 논문을 읽고 실험 데이터를 정리한다.\n\n\"교수님, 저 졸업은 언제쯤...\"\n\"허허, 자네 아직 멀었네. 이번 학회 준비는 다 됐나?\"\n\n학교의 불은 꺼지지 않고, 나의 청춘도 랩실에 저당 잡혔다.");
     }
 
     printf("\n\n====================================\n");
