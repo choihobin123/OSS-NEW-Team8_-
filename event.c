@@ -296,6 +296,8 @@ int isGameEnd(const State* st) {
     if (st->badgamerFlag >= 1) return 1;    // 게임중독
     if (st->byegirlfriendFlag >= 1) return 1; // 이별
     if (st->overworkFlag >= 1) return 1; // 과로
+    if (st->noPortfolioFlag >= 1) return 1; // 빈 폴더
+    if (st->slaveFlag >= 1) return 1; // 대학원
     return 0; // 게임 계속 진행 가능
 }
 
@@ -374,6 +376,10 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     if (ev->byegirlfriendFlagTrigger == choice) st->byegirlfriendFlag++;
 
     if (ev->overworkFlagTrigger == choice) st->overworkFlag++;
+
+    if (ev->noPortfolioFlagTrigger == choice) st->noPortfolioFlag++;
+
+    if (ev->slaveFlagTrigger == choice) st->slaveFlag++;
 
     // ==========================================================
 
