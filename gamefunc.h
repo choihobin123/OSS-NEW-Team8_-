@@ -30,6 +30,7 @@ typedef struct {
     int byegirlfriendFlagTrigger;
     int overworkFlagTrigger;
     int noPortfolioFlagTrigger;
+    int slaveFlagTrigger;
 
 } Event;
 
@@ -53,6 +54,7 @@ typedef struct {
     int byegirlfriendFlag; // 이별
     int overworkFlag; // 과로
     int noPortfolioFlag; // 빈 폴더
+    int slaveFlag;
 } State;
 
 void printStatus(const State* st);

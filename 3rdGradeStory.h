@@ -193,7 +193,7 @@ static const Event events_y3_random[10] = {
 
 
 // [고정 질문지] : 순서대로 진행될 메인 스토리
-static const Event events_y3_fixed[21] = {
+static const Event events_y3_fixed[22] = {
 
     {
         // 0. 취업 스터디 제안
@@ -400,6 +400,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "주 2회 꾸준히 나가며 연습한다.",
         .choice2    = "경험 삼아 몇 번만 나가본다.",
         .choice3    = "어색해서 가지 않기로 한다.",
+
         .result1    = "면접 스킬이 많이 늘어나 자신감이 생겼다.",
         .result2    = "실전 감각이 어떤 느낌인지 맛은 봤다.",
         .result3    = "영상으로만 모범 답안을 보며 상상에 의존한다.",
@@ -417,6 +418,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "매일 시간을 정해 문제를 풀며 대비한다.",
         .choice2    = "지원할 회사 시험만 최소한으로 준비한다.",
         .choice3    = "일단 직무 공부부터 하고 시험은 나중에 본다.",
+
         .result1    = "문제를 많이 풀수록 자신감이 조금씩 생긴다.",
         .result2    = "간신히 커트라인만 넘길 것 같은 느낌이다.",
         .result3    = "이론은 알지만 시험 형식은 여전히 낯설다.",
@@ -434,6 +436,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "휴학해서 취업 준비에 올인한다.",
         .choice2    = "계획대로 4년 안에 졸업한다.",
         .choice3    = "반학기만 휴학해 인턴과 취준을 병행한다.",
+
         .result1    = "시간은 넉넉하지만 스스로 계획을 세워야 한다.",
         .result2    = "학사 일정 안에서 틈틈이 준비를 이어간다.",
         .result3    = "학교와 인턴을 오가며 체력은 힘들지만 경험치는 쌓인다.",
@@ -451,6 +454,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "질문을 준비해 끝까지 남아 네트워킹한다.",
         .choice2    = "발표만 듣고 조용히 나온다.",
         .choice3    = "자료만 받아보고 가지 않는다.",
+
         .result1    = "현직자 명함과 현실적인 조언을 얻었다.",
         .result2    = "대략적인 채용 일정과 우대 사항을 파악했다.",
         .result3    = "슬라이드만 남고 실제 사람 얼굴은 떠오르지 않는다.",
@@ -468,6 +472,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "친한 친구들과 팀을 짜서 아이디어를 구체화한다.",
         .choice2    = "혼자서도 가능한 주제를 찾아본다.",
         .choice3    = "취업 준비가 먼저라 지금은 미룬다.",
+
         .result1    = "화이트보드를 가득 채우며 프로젝트 방향을 잡았다.",
         .result2    = "작지만 확실히 끝낼 수 있는 주제를 몇 개 골랐다.",
         .result3    = "대신 자소서와 포트폴리오에 들어갈 소재를 더 깊게 파본다.",
@@ -484,16 +489,18 @@ static const Event events_y3_fixed[21] = {
         .question   = "교수님이 대학원을 추천하며 연구도 잘할 것 같다고 하신다.",
         .choice1    = "연구 직업도 염두에 두고 진지하게 고민한다.",
         .choice2    = "취업 준비에 집중하겠다고 말씀드린다.",
-        .choice3    = "당장은 결정을 미루고 정보를 더 모은다.",
+        .choice3    = "당장은 결정을 미루고 정보를 더 모은다.", // 
+
         .result1    = "교수님과 면담을 잡아 연구 주제와 진로를 들어본다.",
         .result2    = "취업 로드맵에 더 힘을 싣기로 했다.",
         .result3    = "대학원·취업 설명회를 모두 체크하며 비교해 보기로 한다.",
         .stateChange1 = {  5, 10, 0 },
         .stateChange2 = {  5,  5, 0 },
         .stateChange3 = {  3,  0, 0 },
-        .next1 = 17,
+        .next1 = -1, // 대학원 엔딩
         .next2 = 17,
-        .next3 = 17
+        .next3 = 17,
+        .slaveFlagTrigger = 1
     },
 
     {
@@ -502,6 +509,7 @@ static const Event events_y3_fixed[21] = {
         .choice1    = "고생했다. 남은 1년도 이렇게만 달려보자고 다짐한다.",
         .choice2    = "아쉬운 부분을 적어 두고 4학년 때 보완하기로 한다.",
         .choice3    = "그래도 여기까지 온 나를 칭찬하며 푹 쉰다.",
+
         .result1    = "달력과 플래너를 넘기며 다시 각오를 다진다.",
         .result2    = "노트 한 쪽에 ‘4학년 목표 리스트’를 적어 내려간다.",
         .result3    = "잠깐은 아무것도 하지 않는 시간을 보내기로 했다.",
