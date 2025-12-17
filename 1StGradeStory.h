@@ -14,10 +14,7 @@ static const Event events_y1_random[5] = {
         .stateChange1 = { -5, 0, 0 },
         .stateChange2 = { -2, 0, 0 },
         .stateChange3 = { +2, 0, 0 },
-        .next1 = 0, .next2 = 0, .next3 = 0, // 무작위는 next 안 씀
-        .result1 = "친구가 고마워하며 맛있게 먹는다.",
-        .result2 = "따가운 시선이 느껴지지만, 나만 맛있게 먹으면 그만이다.",
-        .result3 = "흔한 기회가 아니지만, 내 지갑 사정이 여유롭지 않다."
+        .next1 = 0, .next2 = 0, .next3 = 0 // 무작위는 next 안 씀
     },
     {
         .question = "[돌발] 선배가 족보를 판다고 한다.",
@@ -27,10 +24,7 @@ static const Event events_y1_random[5] = {
         .stateChange1 = { +10, +15, 0 },
         .stateChange2 = { 0, +5, 0 },
         .stateChange3 = { +5, +15, 0 },
-        .next1 = 0, .next2 = 0, .next3 = 0,
-        .result1 = "족보를 얻었지만, 앞으로 컵라면만 먹어야 할거 같다.",
-        .result2 = "족보? 필요없다. 내 실력이면 충분히 좋은 점수를 받을 수 있을 것이다.",
-        .result3 = "족보가 왜 필요한가. 난 친구와 함께 공부하겠다."
+        .next1 = 0, .next2 = 0, .next3 = 0
     },
     {
         .question = "[돌발] 수강신청 정정 기간이다.",
@@ -40,10 +34,7 @@ static const Event events_y1_random[5] = {
         .stateChange1 = { -10, 0, 0 },
         .stateChange2 = { +10, 0, 0 },
         .stateChange3 = { -5, -5, 0 },
-        .next1 = 0, .next2 = 0, .next3 = 0,
-        .result1 = "남아있는 꿀강의를 발견하여 빠르게 주워갔다. 다행히 시간표가 그리 망하지는 않은 듯 하다.",
-        .result2 = "후회가 밀려온다. 내 시간표가 어쩌다 이렇게 되었을까?",
-        .result3 = "공강을 포기할 수 없었다. 금요일 공강을 위해 전공을 빼버렸다. 미래의 내가 해결해 줄 것이다."
+        .next1 = 0, .next2 = 0, .next3 = 0
     },
     {
         .question = "[돌발] 과방에 피자가 배달왔다.",
@@ -53,10 +44,7 @@ static const Event events_y1_random[5] = {
         .stateChange1 = { -5, 0, 0 },
         .stateChange2 = { 0, 0, 0 },
         .stateChange3 = { +5, 0, 0 },
-        .next1 = 0, .next2 = 0, .next3 = 0,
-        .result1 = "한 조각이라도 더 먹어야한다. 빠르게 달려가 피자를 집었다. 누군가 눈치를 주는 것 같았지만, 중요하지 않다.",
-        .result2 = "\"내가 2조각 이상 먹는다면, 누군가가 덜 먹지 않을까?\" 배는 좀 고프지만 동기들이랑 피자를 맛있게 먹었다.",
-        .result3 = "배는 좀 고프지만 피자를 먹고 싶지는 않다. 그냥 굶어야겠다."
+        .next1 = 0, .next2 = 0, .next3 = 0
     },
     {
         .question = "[돌발] 갑작스러운 휴강 문자가 왔다!",
@@ -66,10 +54,7 @@ static const Event events_y1_random[5] = {
         .stateChange1 = { -10, -5, 0 },
         .stateChange2 = { -15, 0, 0 },
         .stateChange3 = { +5, +5, 0 },
-        .next1 = 0, .next2 = 0, .next3 = 0,
-        .result1 = "\"교수님 감사합니다!\" 나는 동기들과 함께 바로 pc방으로 달려가 휴강을 즐겼다.",
-        .result2 = "오늘만큼은 일어나기 싫었는데, 내 기도를 들어준 듯 하다. 다시 이불 속으로 들어가 잠에 들었다.",
-        .result3 = "\"휴강이여도 공부는 해야지\" 나는 도서관에서 하루종일 공부에 몰두하였다."
+        .next1 = 0, .next2 = 0, .next3 = 0
     }
 };
 
@@ -83,10 +68,7 @@ static const Event events_y1_fixed[5] = {
         .stateChange1 = { -5, 0, 1 },
         .stateChange2 = { +5, +10, 0 },
         .stateChange3 = { -10, -5, 0 },
-        .next1 = 1, .next2 = 1, .next3 = 1, // 다음은 1번으로
-        .result1 = "동기들과 벚꽃 사진을 찍는데 나에게 관심을 보이는 동기가 있다. [여자친구 생김]",
-        .result2 = "\"벚꽃의 꽃말을 중간고사이다.\" 난 공부부터 시작하였다.",
-        .result3 = "\"벚꽃? 수업? 다 필요없다. 개강하면 무조건 술이다.\""
+        .next1 = 1, .next2 = 1, .next3 = 1 // 다음은 1번으로
     },
     {   // 1번
         .question = "교양 수업에서 조별과제 조가 짜여졌다.",
@@ -96,10 +78,7 @@ static const Event events_y1_fixed[5] = {
         .stateChange1 = { +20, +20, 0 },
         .stateChange2 = { -5, -5, 0 },
         .stateChange3 = { +5, +5, 0 },
-        .next1 = 2, .next2 = 2, .next3 = 2,
-        .result1 = "비록 힘들긴 했지만, 높은 점수를 받아낼 수 있었다.",
-        .result2 = "하는 척만 하며, 아무것도 하지 않았다. 조원의 캐리로 마무리 되었으나, 내가 배운 것은 없다.",
-        .result3 = "조장은 부담된다. 자료조사만 하여 조별과제에 참여하였다. 무난한 성적을 받을 것 같다."
+        .next1 = 2, .next2 = 2, .next3 = 2
     },
     {   // 2번
         .question = "대학 축제 기간! 주점이 열렸다.",
@@ -109,10 +88,7 @@ static const Event events_y1_fixed[5] = {
         .stateChange1 = { +15, +5, 0 },
         .stateChange2 = { -10, -5, 0 },
         .stateChange3 = { -15, 0, 0 },
-        .next1 = 3, .next2 = 3, .next3 = 3,
-        .result1 = "\"알바는 안 힘드냐?\" 친구의 한 마디에 나는 축제를 즐기고 싶다고 말하고 싶었지만, 괜찮다는 말 뿐이였다.",
-        .result2 = "마시고, 마시고, 또 마시고 끊임없이 마시며 축제를 즐겼다.",
-        .result3 = "축제면 수업도 없다. \"이런 날에 푹 자야지\" 난 집에서 하루종일 잠만 잤다."
+        .next1 = 3, .next2 = 3, .next3 = 3
     },
     {   // 3번
         .question = "기말고사가 코앞이다. 공부 어떻게 할까?",
@@ -122,10 +98,7 @@ static const Event events_y1_fixed[5] = {
         .stateChange1 = { +20, +20, 0 },
         .stateChange2 = { +5, +10, 0 },
         .stateChange3 = { -10, -20, 0 },
-        .next1 = 4, .next2 = 4, .next3 = 4,
-        .result1 = "\"진작에 공부할걸..\" 후회해도 늦었다. 밤새 공부한다.",
-        .result2 = "\"급한대로 중요한 것만 보자\" 강의자료를 보며 중요한 부분만 빠르게 공부하였다.",
-        .result3 = "\"지금 와서 해봤자 무슨 소용이 있겠어. 다음 학기를 노린다!\" 그렇게 아무 공부도 하지 않았다."
+        .next1 = 4, .next2 = 4, .next3 = 4
     },
     {   // 4번 (마지막)
         .question = "드디어 종강! 여름방학 계획은?",
@@ -135,10 +108,7 @@ static const Event events_y1_fixed[5] = {
         .stateChange1 = { +10, 0, 0 },
         .stateChange2 = { -20, 0, 0 },
         .stateChange3 = { +10, +10, 0 },
-        .next1 = -1, .next2 = -1, .next3 = -1, // -1은 종료 신호
-        .result1 = "\"방학 때 알바해야 돈 많이 벌고 편하지\" 종강과 동시에 나는 알바를 시작하였다.",
-        .result2 = "\"어디로 놀러갈까?\" 친구와 함께 가까운 일본으로 여행을 갔다.",
-        .result3 = "\"방학때도 공부만이 살길이다.\" 좀 힘들지만 방학 내내 학원을 다니며 많은 것을 배웠다."
+        .next1 = -1, .next2 = -1, .next3 = -1 // -1은 종료 신호
     }
 };
 
