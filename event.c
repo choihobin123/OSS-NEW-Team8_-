@@ -477,12 +477,16 @@ void printSpecialEnding(const State* st) {
 
     printf("\n\n====================================\n");
 
-    /*
+    
+
+    waitEnter();
+}
+
+void printEnding(const State* st) {
     printf("\n======= 졸업 엔딩 =======\n");
     if (st->stress < 50 && st->skill > 70) printf("[대기업 엔딩] 성공적인 취업!\n");
     else if (st->skill > 90) printf("[대학원 엔딩] 교수가 되었습니다.\n");
     else printf("[일반 엔딩] 무사히 졸업했습니다.\n");
-    */
-
     waitEnter();
 }
+    
