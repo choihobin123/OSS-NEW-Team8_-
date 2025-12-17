@@ -296,7 +296,7 @@ int printOpeningMenu() {
 
 // 게임을 즉시 종료해야 하는 상태인지 검사하는 함수
 int isGameEnd(const State* st) {
-    if (st->stress >= 100) return 1;        // 과로사
+    if (st->stress >= 200) return 1;        // 과로사
     if (st->badFlag >= 3) return 1;         // 군대 폐급 (영창)
     if (st->proFlag >= 1) return 1;         // 전문하사
     if (st->nojobFlag >= 1) return 1;       // 자퇴
@@ -453,7 +453,7 @@ void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const 
         current = ask_fixed_question(current, st, fixedEvents);
         
         // 엔딩/게임오버 체크
-        if (st->stress >= 100) return;
+        if (st->stress >= 200) return;
         if (isGameEnd(st)) return; 
 
 
@@ -489,7 +489,7 @@ void printSpecialEnding(const State* st) {
     printf("====================================\n\n");
 
     //상태변수 엔딩
-    if (st->stress >= 150) {
+    if (st->stress >= 200) {
         typingPrint("[과로사 엔딩] \n\n\"어..? 왜 갑자기 앞이 흐릿해보이지..?\" \n그 뒤로 희미하게 기억나는 것은..\n\n다급한 친구의 목소리와 사이렌 소리뿐이였다.");
     }
     //군대
@@ -572,7 +572,7 @@ void printEnding(const State* st) {
     
     
     // [히든 엔딩] 대기업 취업 (스트레스 관리 잘함 + 고스펙)
-    if (st->stress < 150 && st->skill > 150) {
+    if (st->stress < 200 && st->skill > 300) {
         setColor(11); // 하늘색
         printf(" ==================================================\n");
         printf("         🏆      대기업 취업 엔딩       🏆       \n");

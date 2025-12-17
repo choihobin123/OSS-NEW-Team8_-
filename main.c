@@ -12,8 +12,6 @@
 #include "4ndGradeStory.h" // 파일명 (4th / 4nd) 확인
 #include "militaryEvent.h"
 
-// event.c 함수 선언
-
 
 int main() {
     SetConsoleOutputCP(65001); // 한글 설정
