@@ -78,5 +78,10 @@ int ask_fixed_question(int idx, State* st, const Event* event);
 void typingPrint(const char* text);
 void Opening();
 void printEnding(const State* st);
+int printOpeningMenu();
+void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const Event* randomEvents, int poolSize);
+void printSpecialEnding(const State* st);
+void ask_random_question(int pool_size, State* st, const Event* event);
+int isGameEnd(const State* st);
 
 #endif;

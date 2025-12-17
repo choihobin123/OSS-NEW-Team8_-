@@ -13,11 +13,7 @@
 #include "militaryEvent.h"
 
 // event.c 함수 선언
-int printOpeningMenu();
-void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const Event* randomEvents, int poolSize);
-void printSpecialEnding(const State* st);
-void ask_random_question(int pool_size, State* st, const Event* event);
-int isGameEnd(const State* st);
+
 
 int main() {
     SetConsoleOutputCP(65001); // 한글 설정
