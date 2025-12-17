@@ -35,28 +35,17 @@ int main() {
     runGradeLoop("2학년", &st, events_y2_fixed, events_y2_random, 2);
     if (isGameEnd(&st)) { printSpecialEnding(&st); return 0; }
 
-    if (st.nojobFlag >= 1 || st.blackmoneyFlag >= 1 || st.gametrollFlag >= 1 || st.blameFlag >= 1 || st.badgamerFlag >= 1) {
-        printSpecialEnding(&st);
-        return 0;
-    }
 
     // ================== 군대 ==================
 
     runGradeLoop("군대", &st, eventList_military, NULL, 0);
-
-    if (st.proFlag >= 1 || st.badFlag >= 3) {
-        printSpecialEnding(&st);
-        return 0;
-    }
+    if (isGameEnd(&st)) { printSpecialEnding(&st); return 0; }
+ 
 
     // ================== 3학년 ==================
 
     runGradeLoop("3학년", &st, events_y3_fixed, events_y3_random, 0);
-    
-    if (st.byegirlfriendFlag >= 1 || st.overworkFlag >= 1 || st.noPortfolioFlag >= 1 || st.slaveFlag >= 1) {
-        printSpecialEnding(&st);
-        return 0;
-    }
+    if (isGameEnd(&st)) { printSpecialEnding(&st); return 0; }
 
     // ================== 4학년 ==================
 

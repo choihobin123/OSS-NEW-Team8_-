@@ -11,9 +11,9 @@ typedef struct {
     const char* result2; // 2번 선택 결과 멘트
     const char* result3; // 3번 선택 결과 멘트
     
-    int stateChange1[4];   // stress, skill, gf, money
-    int stateChange2[4];
-    int stateChange3[4];
+    int stateChange1[3];   // stress, skill, 여친
+    int stateChange2[3];
+    int stateChange3[3];
     int next1;
     int next2;
     int next3;
