@@ -446,8 +446,7 @@ void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const 
     int current = 0;
     
     system("cls");
-    showChapterTransition(title);
-    waitEnter();
+    showChapterTransition(title); // 챕터 넘어갈 때 UI 
 
     // 메인 스토리 루프
     while (current != -1) {
