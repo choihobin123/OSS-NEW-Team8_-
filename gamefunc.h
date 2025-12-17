@@ -25,20 +25,24 @@ typedef struct {
 
     int badFlagTrigger;
     int proFlagTrigger;
+
+    int addictionFlagTrigger;
+    int healthFlagTrigger;
+
     int nojobFlagTrigger;
     int blackmoneyFlagTrigger;
     int gametrollFlagTrigger;
     int blameFlagTrigger;
     int blame2FlagTrigger;
     int badgamerFlagTrigger;
-    int addictionFlagTrigger;
-    int healthFlagTrigger;
-    int quitFlagTrigger;
-    int graduateFlagTrigger;
+
     int byegirlfriendFlagTrigger;
     int overworkFlagTrigger;
     int noPortfolioFlagTrigger;
     int slaveFlagTrigger;
+
+    int quitFlagTrigger;
+    int graduateFlagTrigger;
 
 } Event;
 
@@ -51,24 +55,30 @@ typedef struct {
     //군대
     int badFlag; // 마음픠 편지
     int proFlag; // 전문하사
+
+    //1학년
+    int addictionFlag; // 코인중독
+	int healthFlag; // 건강악화
+    // badgamerFlag 사용
+    
     //2학년
     int nojobFlag; // 백수
     int blackmoneyFlag; // 횡령
     int gametrollFlag; // 트롤
     int blameFlag; // 손절
     int blame2Flag; // 손절
-    
-    //1학년+4학년
     int badgamerFlag; // 게임중독
-	int addictionFlag; // 코인중독
-	int healthFlag; // 건강악화
-	int quitFlag; // 중도포기
-    int graduateFlag; //대학원 엔딩
+   
     //3학년
     int byegirlfriendFlag; // 이별
     int overworkFlag; // 과로
     int noPortfolioFlag; // 빈 폴더
-    int slaveFlag;
+    int slaveFlag; //대학원 엔딩1
+
+    //4학년
+    int quitFlag; // 중도포기
+    int graduateFlag; //대학원 엔딩2
+
 } State;
 
 void printStatus(const State* st);

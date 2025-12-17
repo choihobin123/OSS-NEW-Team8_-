@@ -19,7 +19,7 @@ int main() {
     SetConsoleOutputCP(65001); // 한글 설정
     srand((unsigned int)time(NULL));
 
-    State st = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    State st = { 0 };
 
     Opening();
 
