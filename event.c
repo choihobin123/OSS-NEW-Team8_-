@@ -62,7 +62,9 @@ void clearBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-void printStatus(const State* st) {
+void printStatus(State* st) {
+	if (st->stress < 0) st->stress = 0;
+    if (st->skill < 0) st->skill = 0;
     printf("\n[현재 상태]\n");
     printf("스트레스 : %d\n", st->stress);
     printf("실력     : %d\n", st->skill);
@@ -294,6 +296,10 @@ int isGameEnd(const State* st) {
     if (st->blameFlag >= 1) return 1;       // 손절
     if (st->blame2Flag >= 1) return 1;      // 손절
     if (st->badgamerFlag >= 1) return 1;    // 게임중독
+	if (st->addictionFlag >= 1) return 1;   // 코인중독
+	if (st->healthFlag >= 1) return 1;     // 건강악화
+	if (st->quitFlag >= 1)return 1;         // 중도포기
+	if (st->graduateFlag >= 1) return 1;        // 대학원 진학   
     return 0; // 게임 계속 진행 가능
 }
 
@@ -368,6 +374,14 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     if (ev->blameFlagTrigger == choice) st->blameFlag++;
 
     if (ev->blame2FlagTrigger == choice) st->blame2Flag++;
+
+	if (ev->addictionFlagTrigger == choice) st->addictionFlag++;
+
+	if (ev->healthFlagTrigger == choice) st->healthFlag++;
+
+	if (ev->quitFlagTrigger == choice) st->quitFlag++;
+
+	if (ev->graduateFlagTrigger == choice) st->graduateFlag++;
 
     // ==========================================================
 
@@ -473,6 +487,18 @@ void printSpecialEnding(const State* st) {
     }
     else if (st->badgamerFlag >= 1) {
         typingPrint("[게임중독 엔딩] \n\n\"내 피지컬 봤냐? 이건 프로 각이다.\" \n\n착각이었다. \n내가 있는 곳은 롤드컵 결승 무대가 아니라 컴컴한 PC방 구석이었다. \n쌓여가는 컵라면 용기와 멈춰버린 티어. \n현실 로그아웃은 불가능했다.");
+    }
+    else if (st->addictionFlag >= 1) {
+		typingPrint("[코인중독 엔딩] \n\n\"이번에 대박 날 거야. 이번엔 진짜야.\" \n\n화면 속 숫자가 춤춘다. \n내 통장은 바닥났고, 빚은 눈덩이처럼 불어났다. \n현실 도피처로 삼은 가상화폐는 나를 더 깊은 나락으로 밀어넣었다.");
+    }
+    else if (st->healthFlag >= 1) {
+		typingPrint("[건강악화 엔딩] \n\n\"의사 선생님, 제가 왜 이렇게 아픈 거죠?\" \n\n의사는 조용히 내 진단서를 건넸다. \n'만성 피로 증후군'. \n나는 그제서야 깨달았다. \n내 몸은 이미 한계에 다다랐다는 것을.");
+    }
+    else if (st->quitFlag >= 1) {
+		typingPrint("[중도포기 엔딩] \n\n\"더 이상은 못하겠어.\" \n\n나는 모든 것을 내려놓았다. \n책상 위에 펼쳐진 교재들, \n컴퓨터 화면 속 미완성 과제들. \n모든 것이 나를 조여왔다. \n나는 조용히 문을 닫고 밖으로 나갔다.");
+    }
+    else if (st->graduateFlag >= 1) {
+		typingPrint("[대학원 엔딩] \n\n\"교수님, 저 대학원에 합격했어요!\" \n\n나는 학사모 대신 연구실 책더미 속에서 미래를 준비했다. \n끝없는 실험과 논문 작성 속에서 나는 진정한 배움의 길을 걸었다.");
     }
 
     printf("\n\n====================================\n");

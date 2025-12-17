@@ -19,6 +19,7 @@ typedef struct {
     int next3;
 
     //엔딩플레그 ++ 하는 변수
+
     int badFlagTrigger;
     int proFlagTrigger;
     int nojobFlagTrigger;
@@ -27,6 +28,9 @@ typedef struct {
     int blameFlagTrigger;
     int blame2FlagTrigger;
     int badgamerFlagTrigger;
+    int addictionFlagTrigger;
+    int healthFlagTrigger;
+    int quitFlagTrigger;
 
 } Event;
 
@@ -44,6 +48,9 @@ typedef struct {
     int blameFlag; // 손절
     int blame2Flag; // 손절
     int badgamerFlag; // 게임중독
+	int addictionFlag; // 코인중독
+	int healthFlag; // 건강악화
+	int quitFlag; // 중도포기
 } State;
 
 void printStatus(const State* st);
@@ -52,4 +59,5 @@ void printSpecialEnding(const State* st);
 int ask_fixed_question(int idx, State* st, const Event* event);
 void typingPrint(const char* text);
 void Opening();
+void printEnding(const State* st);
 #endif
