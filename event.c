@@ -216,9 +216,9 @@ int printOpeningMenu() {
 
         // 2. 메뉴 목록 출력
         const char* menuItems[] = {
-            " NEW GAME (새로운 기록 시작)",
-            " MANUAL   (시스템 설명서)",
-            " SHUTDOWN (시스템 종료)"
+            " 새 게임 시작 ",
+            " 시스템 설명서 ",
+            " 시스템 종료 "
         };
 
         for (int i = 0; i < 3; i++) {
@@ -262,7 +262,7 @@ int printOpeningMenu() {
                 // 게임 설명 화면
                 system("cls");
                 setColor(10); // 연두색
-                printf("\n\n [ SYSTEM MANUAL ]\n\n");
+                printf("\n\n [ 시스템 설명서 ]\n\n");
 
                 setColor(7);
                 typingPrint(" > 본 시뮬레이션은 '공대생'의 대학 생활을 다룹니다.\n\n");
@@ -294,6 +294,8 @@ int isGameEnd(const State* st) {
     if (st->blameFlag >= 1) return 1;       // 손절
     if (st->blame2Flag >= 1) return 1;      // 손절
     if (st->badgamerFlag >= 1) return 1;    // 게임중독
+    if (st->byegirlfriendFlag >= 1) return 1; // 이별
+    if (st->overworkFlag >= 1) return 1; // 과로
     return 0; // 게임 계속 진행 가능
 }
 
@@ -306,7 +308,7 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
 
     // [기존 텍스트 형식 절대 유지]
     printf("\n====================================\n\n");
-    printf("%s\n\n", ev->question);
+    printf("%s\n\n", ev->question); 
     printf("1) %s\n", ev->choice1);
     printf("2) %s\n", ev->choice2);
     if (ev->choice3 != NULL) printf("3) %s\n", ev->choice3);
@@ -368,6 +370,10 @@ int ask_fixed_question(int idx, State* st, const Event* event) {
     if (ev->blameFlagTrigger == choice) st->blameFlag++;
 
     if (ev->blame2FlagTrigger == choice) st->blame2Flag++;
+
+    if (ev->byegirlfriendFlagTrigger == choice) st->byegirlfriendFlag++;
+
+    if (ev->overworkFlagTrigger == choice) st->overworkFlag++;
 
     // ==========================================================
 
@@ -473,6 +479,15 @@ void printSpecialEnding(const State* st) {
     }
     else if (st->badgamerFlag >= 1) {
         typingPrint("[게임중독 엔딩] \n\n\"내 피지컬 봤냐? 이건 프로 각이다.\" \n\n착각이었다. \n내가 있는 곳은 롤드컵 결승 무대가 아니라 컴컴한 PC방 구석이었다. \n쌓여가는 컵라면 용기와 멈춰버린 티어. \n현실 로그아웃은 불가능했다.");
+    }
+    else if(st->byegirlfriendFlag >= 1){
+        typingPrint("[이별 엔딩] \n\n\"우리... 그만하자.\" \n\n그 한마디가 내 세상의 전원을 꺼버렸다. \n아무것도 손에 잡히지 않는다. 전공책도, 게임도, 밥 먹는 것조차 귀찮다. \n방 구석에 쌓여가는 술병만큼 내 학점도, 내 인생도 무너져 내렸다. 나는 방 밖으로 나가는 문을 잠가버렸다.");
+    }
+    else if(st->overworkFlag >= 1){
+        typingPrint("[과로 엔딩] \n\n\"어서오세...요...\" \n\n편의점 계산대의 바코드가 2개로 겹쳐 보이기 시작했다.\n새벽 알바가 끝나면 쉴 틈 없이 1교시 수업으로, 그리고 다시 과제로... 카페인으로 억지로 붙잡고 있던 정신줄이 툭 하고 끊어졌다.\n\n\"학생! 학생!! 정신 차려!!\"\n\n눈을 떴을 때 보인 건 하얀 병원 천장뿐이었다. 의사 선생님은 단호한 표정으로 휴학 진단서를 내밀었다. 통장 잔고는 조금 찼을지 몰라도, 내 몸은 완전히 방전되어 버렸다.");
+    }
+    else if(st->noPortfolioFlag >= 1){
+        typingPrint("[빈 폴더 엔딩] \n\n\"지원 마감 10분 전.\"\n바탕화면은 '새 폴더', '최종', '진짜_최종', '진짜_진짜_최종'으로 가득 차 있다.\n하지만 정작 클릭해 보면 정리되지 않은 스크린샷과 의미 없는 메모장 파일뿐.\n\n\"이것도 나중에... 저것도 나중에...\"\n\n미래의 나에게 미뤘던 빚이 쓰나미가 되어 돌아왔다.\n남들은 결과물을 멋진 PDF로 뽐내는데, 내 모니터엔 빈 폴더만 깜빡거린다.\n제출 버튼을 누르지 못하고 창을 닫았다. 내 대학 생활은 '제목 없음'으로 끝났다.");
     }
 
     printf("\n\n====================================\n");

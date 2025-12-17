@@ -18,7 +18,7 @@ typedef struct {
     int next2;
     int next3;
 
-    //엔딩플레그 ++ 하는 변수
+    //==엔딩플레그 ++ 하는 변수==
     int badFlagTrigger;
     int proFlagTrigger;
     int nojobFlagTrigger;
@@ -27,6 +27,9 @@ typedef struct {
     int blameFlagTrigger;
     int blame2FlagTrigger;
     int badgamerFlagTrigger;
+    int byegirlfriendFlagTrigger;
+    int overworkFlagTrigger;
+    int noPortfolioFlagTrigger;
 
 } Event;
 
@@ -35,15 +38,21 @@ typedef struct {
     int skill;
     int gf;
 
-    //엔딩 플레그
+    //==엔딩 플레그==
+    //군대
     int badFlag; // 마음픠 편지
     int proFlag; // 전문하사
+    //2학년
     int nojobFlag; // 백수
     int blackmoneyFlag; // 횡령
     int gametrollFlag; // 트롤
     int blameFlag; // 손절
     int blame2Flag; // 손절
     int badgamerFlag; // 게임중독
+    //3학년
+    int byegirlfriendFlag; // 이별
+    int overworkFlag; // 과로
+    int noPortfolioFlag; // 빈 폴더
 } State;
 
 void printStatus(const State* st);
