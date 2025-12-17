@@ -399,6 +399,7 @@ static const Event events_y1_fixed[21] = {
     {   // 19. 1학년 겨울방학의 시작
         .question = "정문을 나서며 뒤를 돌아본다. 당신의 1학년은 어땠나?",
         .choice1 = "치열했다. 2학년 땐 더 잘해보자.",
+<<<<<<< HEAD
         .choice2 = "아무 생각이 없다. 배고프다.",
         .choice3 = NULL,
         .result1 = "학업 능력이 향상되며 멋진 공대생이 될 준비를 마쳤다.",
@@ -407,6 +408,16 @@ static const Event events_y1_fixed[21] = {
         .stateChange1 = { 0, +10, 0 },
         .stateChange2 = { -10, 0, 0 },
         .stateChange3 = { 0, 0, 0 },
+=======
+        .choice2 = ".후회 없이 놀았다. 이제 군대나 가자",
+        .choice3 = "아무 생각이 없다. 배고프다.",
+        .result1 = "학업 능력이 향상되며 멋진 공대생이 될 준비를 마쳤다.",
+        .result2 = "군대에 가려 했으나, 이미 신청 기간이 지난 뒤였다.",
+        .result3 = "허무주의 공학자가 탄생했다.",
+        .stateChange1 = { 0, +10, 0 },
+        .stateChange2 = { +5, 0, 0 },
+        .stateChange3 = { -10, 0, 0 },
+>>>>>>> 58aaf10ade80bf022f8285558622a5539c5ca9ff
         .next1 = -1, .next2 = -1, .next3 = -1
     }
 };
