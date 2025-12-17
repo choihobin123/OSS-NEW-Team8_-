@@ -80,6 +80,7 @@ void delay(int milliseconds) {
     pause = (long)milliseconds * 100000;
     while (pause--);
 }
+
 void showLoadingBar(const char* taskName) {
     setColor(10); // 연두색 (시스템 느낌)
     printf("\n [SYSTEM] %s...\n", taskName);
@@ -111,6 +112,16 @@ void showLoadingBar(const char* taskName) {
     printf("\n");
     Sleep(300);
     setColor(7); // 다시 흰색 복구
+}
+
+void loadingBar() { // 챕터 넘어갈 때 로딩바
+    printf("\n    Loading: [");
+    for (int i = 0; i < 20; i++) {
+        printf("■");
+        Sleep(30); // 0.03초 딜레이 (좌르륵 차오르는 효과)
+    }
+    printf("] COMPLETE!\n");
+    Sleep(500); // 잠시 대기
 }
 
 void Opening() {
@@ -416,7 +427,7 @@ void runGradeLoop(const char* title, State* st, const Event* fixedEvents, const 
     int current = 0;
     
     system("cls");
-    printf("=== %s 시작 ===\n", title);
+    showChapterTransition(title);
     waitEnter();
 
     // 메인 스토리 루프
