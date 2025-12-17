@@ -62,7 +62,7 @@ int main() {
 
     // ================== 4학년 ==================
 
-    runGradeLoop("4학년", &st, events_y4, NULL, 0);
+    runGradeLoop("4학년", &st, events_y4_fixed, events_y4_random, 0);
     if (isGameEnd(&st)) { printSpecialEnding(&st); return 0; }
     // ================== 엔딩 ==================
 
